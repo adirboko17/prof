@@ -103,7 +103,7 @@ export function Loader() {
         if (done >= total) finish();
       });
     });
-    timeouts.push(window.setTimeout(finish, 20000));
+    timeouts.push(window.setTimeout(finish, 5000));
 
     const step = () => {
       if (gone) return;

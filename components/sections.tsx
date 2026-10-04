@@ -183,7 +183,7 @@ export function Expertise() {
         </div>
         <div style={{ flex: "1 1 320px", background: "#D4F1EF", borderRadius: "clamp(22px,3.2vw,32px)", padding: "clamp(26px,3.5vw,40px)", display: "flex", flexDirection: "column", gap: 20 }}>
           <h3 style={{ margin: 0, fontSize: "clamp(26px,2.6vw,34px)", fontWeight: 700, lineHeight: 1.1 }}>ניתוחים קיסריים ולידות מורכבות</h3>
-          <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "#36504F" }}>פרופ&apos; שיינר ביצע מאות ניתוחים קיסריים ומומחה בביצוע הליכים כירורגיים מתקדמים, תוך דגש על בטיחות האם והיילוד.</p>
+          <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: "#36504F" }}>פרופ&apos; שיינר ביצע אלפי ניתוחים קיסריים ומומחה בביצוע הליכים כירורגיים מתקדמים, תוך דגש על בטיחות האם והיילוד.</p>
           <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12, color: "#0B2B2D" }}>
             <li style={{ display: "flex", gap: 12, alignItems: "flex-start", fontSize: 16, lineHeight: 1.55 }}>
               <Check />
@@ -428,11 +428,11 @@ export function Books() {
         <article style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <BookScene glow="radial-gradient(circle, rgba(255,170,70,0.28) 0%, rgba(255,255,255,0) 68%)">
             <div className="h-book" style={{ ...bookStyle, aspectRatio: "1/1" }}>
-              <div style={{ position: "absolute", inset: 0, borderRadius: "3px 8px 8px 3px", overflow: "hidden", transform: "translateZ(11px)", boxShadow: "0 34px 60px -22px rgba(11,43,45,0.45), 0 14px 24px -12px rgba(11,43,45,0.25)" }}>
-                <img src="https://eyalsheiner.co.il/wp-content/uploads/2025/03/Mask-group.png" alt="הַמַּסָּע הַמֻּפְלָא שֶׁל אֶמִּי בַּבֶּטֶן שֶׁל אִמָּא" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <div style={{ position: "absolute", inset: 0, borderRadius: "3px 8px 8px 3px", overflow: "hidden", transform: "translateZ(11px)", WebkitBackfaceVisibility: "visible", backfaceVisibility: "visible", boxShadow: "0 34px 60px -22px rgba(11,43,45,0.45), 0 14px 24px -12px rgba(11,43,45,0.25)" }}>
+                <div role="img" aria-label="הַמַּסָּע הַמֻּפְלָא שֶׁל אֶמִּי בַּבֶּטֶן שֶׁל אִמָּא" style={{ width: "100%", height: "100%", backgroundImage: "url('/assets/emi-cover.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(255,255,255,0) 86%, rgba(0,0,0,0.16) 93%, rgba(255,255,255,0.18) 96%, rgba(0,0,0,0.1) 100%)" }} />
               </div>
-              <div style={{ position: "absolute", top: 0, right: 0, width: 22, height: "100%", transformOrigin: "right center", transform: "translateZ(11px) rotateY(90deg)", backgroundImage: "url('https://eyalsheiner.co.il/wp-content/uploads/2025/03/Mask-group.png')", backgroundSize: "cover", backgroundPosition: "right center", filter: "brightness(0.62) saturate(1.1)" }} />
+              <div style={{ position: "absolute", top: 0, right: 0, width: 22, height: "100%", transformOrigin: "right center", transform: "translateZ(11px) rotateY(90deg)", backgroundImage: "url('/assets/emi-cover.png')", backgroundSize: "cover", backgroundPosition: "right center", filter: "brightness(0.62) saturate(1.1)" }} />
               <div style={{ position: "absolute", top: "2%", left: 0, width: 22, height: "96%", transformOrigin: "left center", transform: "translateZ(11px) rotateY(-90deg)", background: "repeating-linear-gradient(90deg,#F4EEE6 0 2px,#E4DBCF 2px 3px)" }} />
             </div>
           </BookScene>
