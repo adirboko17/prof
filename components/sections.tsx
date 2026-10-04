@@ -240,47 +240,55 @@ const PILLS = ["בדיקות גניקולוגיות", "בירורי פיריון
 
 export function Schedule() {
   return (
-    <section id="schedule" style={{ display: "flex", flexDirection: "column", gap: "clamp(24px,3vw,36px)" }}>
-      <div data-reveal="true" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "16px 32px", flexWrap: "wrap" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <span style={{ fontSize: 15, fontWeight: 600, color: "#0E7C7F" }}>מיקום וזמנים</span>
-          <h2 style={{ margin: 0, fontSize: "clamp(30px,3.4vw,46px)", fontWeight: 600, lineHeight: 1.08, letterSpacing: "-0.02em", color: "#0B2B2D" }}>קליניקה פרטית, אקליפטוס 33, עומר</h2>
+    <section id="schedule" className="schedule">
+      <div data-reveal="true" className="schedule-head">
+        <div className="schedule-intro">
+          <span className="schedule-kicker">מיקום וזמנים</span>
+          <h2 className="schedule-title">
+            קליניקה פרטית
+            <span className="schedule-comma">, </span>
+            <span className="schedule-place">אקליפטוס 33, עומר</span>
+          </h2>
         </div>
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          <a href={WAZE} className="h-cta" style={{ background: "#0E7C7F", color: "#FFFFFF", padding: "14px 22px", borderRadius: 14, fontWeight: 600, fontSize: 15, whiteSpace: "nowrap", transition: "background .25s" }}>
-            ניווט ב-Waze
+        <div className="schedule-actions">
+          <a href={WAZE} className="schedule-act schedule-act-primary">
+            <span>ניווט ב-Waze</span>
+            <span className="schedule-act-meta">אקליפטוס 33</span>
           </a>
-          <a href="tel:035114428" className="h-outline" style={{ background: "#FFFFFF", color: "#0B2B2D", border: "1px solid #CBE4E2", padding: "14px 22px", borderRadius: 14, fontWeight: 600, fontSize: 15, whiteSpace: "nowrap", transition: "background .25s" }}>
-            לזימון תור
+          <a href="tel:035114428" className="schedule-act schedule-act-secondary">
+            <span>לזימון תור</span>
+            <span className="schedule-act-meta" dir="ltr">03-5114428</span>
           </a>
         </div>
       </div>
-      <div data-reveal-stagger="true" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,260px),1fr))", gap: "20px clamp(20px,3vw,40px)" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, paddingTop: 16, borderTop: "1px solid #D6E8E7" }}>
-          <span style={{ fontSize: 13, fontWeight: 600, color: "#0E7C7F" }}>הגעה</span>
-          <span style={{ fontSize: 16, lineHeight: 1.6, color: "#36504F" }}>כניסה בשביל מימין לבית (לא דרך החצר)</span>
+      <div data-reveal-stagger="true" className="schedule-facts">
+        <div className="schedule-fact">
+          <span className="schedule-label">הגעה</span>
+          <p className="schedule-copy">
+            כניסה בשביל מימין לבית <span className="schedule-note">(לא דרך החצר)</span>
+          </p>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, paddingTop: 16, borderTop: "1px solid #D6E8E7" }}>
-          <span style={{ fontSize: 13, fontWeight: 600, color: "#0E7C7F" }}>טיפולים ומעקבים</span>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+        <div className="schedule-fact">
+          <span className="schedule-label">טיפולים ומעקבים</span>
+          <div className="schedule-pills">
             {PILLS.map((pill) => (
-              <span key={pill} style={{ background: "#E1F3F2", color: "#0B2B2D", padding: "7px 12px", borderRadius: 999, fontSize: 14, whiteSpace: "nowrap" }}>
+              <span key={pill} className="schedule-pill">
                 {pill}
               </span>
             ))}
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, paddingTop: 16, borderTop: "1px solid #D6E8E7" }}>
-          <span style={{ fontSize: 13, fontWeight: 600, color: "#0E7C7F" }}>קופות וביטוחים</span>
-          <span style={{ fontSize: 16, lineHeight: 1.6, color: "#36504F" }}>פרופ&apos; שיינר עובד עם רשת הרופאים של כללית מושלם ומוכר ע״י ביטוחים פרטיים ורב הקופות.</span>
+        <div className="schedule-fact">
+          <span className="schedule-label">קופות וביטוחים</span>
+          <p className="schedule-copy">פרופ&apos; שיינר עובד עם רשת הרופאים של כללית מושלם ומוכר ע״י ביטוחים פרטיים ורב הקופות.</p>
         </div>
       </div>
-      <div data-reveal="true" style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-        <div style={{ flex: "1.6 1 380px", position: "relative", height: "clamp(300px,34vw,420px)", borderRadius: 24, overflow: "hidden", background: "#E1F3F2" }}>
+      <div data-reveal="true" className="schedule-media">
+        <div className="schedule-frame schedule-tour">
           <iframe data-src="https://my.matterport.com/show/?m=r2P9eTASfd5" title="סיור וירטואלי בקליניקה" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, display: "block" }} allowFullScreen />
-          <span style={{ position: "absolute", top: 14, right: 14, background: "#FFFFFF", color: "#0B2B2D", padding: "7px 13px", borderRadius: 999, fontSize: 13, fontWeight: 600, pointerEvents: "none", boxShadow: "0 4px 14px rgba(11,43,45,0.12)" }}>סיור וירטואלי</span>
+          <span className="schedule-badge">סיור וירטואלי</span>
         </div>
-        <div style={{ flex: "1 1 280px", position: "relative", height: "clamp(300px,34vw,420px)", borderRadius: 24, overflow: "hidden", background: "#E1F3F2" }}>
+        <div className="schedule-frame schedule-map">
           <iframe data-src="https://www.google.com/maps?q=%D7%A4%D7%A8%D7%95%D7%A4%20%D7%90%D7%99%D7%99%D7%9C%20%D7%A9%D7%99%D7%99%D7%A0%D7%A8&output=embed&hl=he-IL&z=12" title="מפה" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, display: "block" }} />
         </div>
       </div>

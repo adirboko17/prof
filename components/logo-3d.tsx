@@ -50,14 +50,13 @@ export function Logo3D({ depth = 0.22 }: Logo3DProps) {
 
     (async () => {
       const THREE = await import("three");
-      const { RoomEnvironment } = await import("three/examples/jsm/environments/RoomEnvironment.js");
+      const { toCreasedNormals } = await import("three/examples/jsm/utils/BufferGeometryUtils.js");
       if (disposed) return;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.outputColorSpace = THREE.SRGBColorSpace;
-      renderer.toneMapping = THREE.NeutralToneMapping;
-      renderer.toneMappingExposure = 1.05;
+      renderer.toneMapping = THREE.NoToneMapping;
       renderer.setClearColor(0x000000, 0);
       const canvas = renderer.domElement;
       canvas.style.width = "100%";
@@ -66,52 +65,38 @@ export function Logo3D({ depth = 0.22 }: Logo3DProps) {
       host.appendChild(canvas);
 
       const scene = new THREE.Scene();
-      const pmrem = new THREE.PMREMGenerator(renderer);
-      const envTexture = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-      scene.environment = envTexture;
 
       const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 50);
       camera.position.set(0, 0, 5.4);
 
-      scene.add(new THREE.HemisphereLight(0xffffff, 0x0b2b2d, 0.9));
-      const key = new THREE.DirectionalLight(0xffffff, 1.8);
-      key.position.set(-2.5, 3, 4);
+      scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+      const key = new THREE.DirectionalLight(0xffffff, 2.6);
+      key.position.set(-3, 3.5, 3);
       scene.add(key);
-      const rim = new THREE.DirectionalLight(0x9ff7f5, 1.2);
-      rim.position.set(3, -1.5, -3);
-      scene.add(rim);
+      const side = new THREE.DirectionalLight(0xffffff, 0.7);
+      side.position.set(4, -2, 1);
+      scene.add(side);
 
       const group = new THREE.Group();
       scene.add(group);
 
       const geometries: InstanceType<typeof THREE.BufferGeometry>[] = [];
       const materials: InstanceType<typeof THREE.Material>[] = [];
-      const bevel = depth * 0.28;
 
       for (const [name, list] of Object.entries(shapes as Record<string, ShapeData[]>)) {
-        const material = new THREE.MeshPhysicalMaterial({
+        const material = new THREE.MeshStandardMaterial({
           color: COLORS[name] ?? "#16B1B1",
-          roughness: 0.34,
-          metalness: 0.02,
-          clearcoat: 0.7,
-          clearcoatRoughness: 0.22,
-          envMapIntensity: 0.55,
+          roughness: 0.62,
+          metalness: 0,
         });
         materials.push(material);
         for (const data of list) {
           const shape = new THREE.Shape(data.outer.map(([x, y]) => new THREE.Vector2(x, y)));
           data.holes.forEach((hole) => shape.holes.push(new THREE.Path(hole.map(([x, y]) => new THREE.Vector2(x, y)))));
-          const geometry = new THREE.ExtrudeGeometry(shape, {
-            depth,
-            bevelEnabled: true,
-            bevelThickness: bevel,
-            bevelSize: bevel * 0.55,
-            bevelOffset: -bevel * 0.55,
-            bevelSegments: 6,
-            curveSegments: 12,
-          });
-          geometry.translate(0, 0, -depth / 2 + (FORWARD[name] ?? 0));
-          geometry.computeVertexNormals();
+          const extruded = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false, curveSegments: 12 });
+          extruded.translate(0, 0, -depth / 2 + (FORWARD[name] ?? 0));
+          const geometry = toCreasedNormals(extruded, Math.PI / 5);
+          extruded.dispose();
           geometries.push(geometry);
           group.add(new THREE.Mesh(geometry, material));
         }
@@ -153,8 +138,6 @@ export function Logo3D({ depth = 0.22 }: Logo3DProps) {
         observer.disconnect();
         geometries.forEach((geometry) => geometry.dispose());
         materials.forEach((material) => material.dispose());
-        envTexture.dispose();
-        pmrem.dispose();
         renderer.dispose();
         canvas.remove();
       };
