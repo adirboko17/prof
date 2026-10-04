@@ -160,7 +160,7 @@ export function Loader() {
           <span aria-hidden="true" style={{ position: "absolute", inset: -14, borderRadius: "50%", border: "1px solid rgba(94,238,238,0.5)", animation: "loaderRing 2s ease-out infinite" }} />
           <span aria-hidden="true" style={{ position: "absolute", inset: -14, borderRadius: "50%", border: "1px solid rgba(94,238,238,0.5)", animation: "loaderRing 2s ease-out 1s infinite" }} />
           <div aria-hidden="true" style={{ width: "100%", height: "100%", perspective: 800 }}>
-            <Logo3D depth={12} />
+            <Logo3D />
           </div>
         </div>
         <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>

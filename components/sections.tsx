@@ -474,7 +474,7 @@ export function Contact() {
         <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1px solid rgba(94,238,238,0.18)" }} />
         <div style={{ position: "absolute", inset: "14%", borderRadius: "50%", background: "radial-gradient(circle, rgba(23,177,177,0.28) 0%, rgba(23,177,177,0) 70%)" }} />
         <div aria-hidden="true" style={{ width: "56%", aspectRatio: "1/1", perspective: 900 }}>
-          <Logo3D depth={14} />
+          <Logo3D />
         </div>
       </div>
     </section>
