@@ -1,7 +1,23 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "תנאי שימוש, פרטיות והצהרת נגישות | פרופ' אייל שיינר",
+  title: "תנאי שימוש, פרטיות והצהרת נגישות",
+  description: "תנאי השימוש, מדיניות הפרטיות והצהרת הנגישות של אתר פרופ' אייל שיינר. המידע באתר אינו תחליף לייעוץ רפואי. עדכון: פברואר 2026.",
+  alternates: {
+    canonical: "/legal",
+    types: {
+      "text/plain": [
+        { url: "/llms.txt", title: "סיכום האתר למודלי שפה" },
+        { url: "/llms-full.txt", title: "סיכום מלא למודלי שפה" },
+      ],
+    },
+  },
+  openGraph: {
+    locale: "he_IL",
+    url: "/legal",
+    title: "תנאי שימוש, פרטיות והצהרת נגישות",
+    description: "תנאי השימוש, מדיניות הפרטיות והצהרת הנגישות של אתר פרופ' אייל שיינר.",
+  },
 };
 
 const card = {
