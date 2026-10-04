@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#F2F8F8;scroll-behavior:smooth;}
+*{box-sizing:border-box;}
+a{color:#0E7C7F;text-decoration:none;}
+a:hover{color:#0A5C5E;}
+@keyframes loaderFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.03)}}
+@keyframes loaderRing{0%{transform:scale(0.85);opacity:0.5}100%{transform:scale(1.6);opacity:0}}
+@keyframes statsMarquee{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@media (prefers-reduced-motion: reduce){[style*="statsMarquee"]{animation:none !important}}
+</style>
+</helmet>
+<div dir="rtl" lang="he" style="font-family:'Rubik',sans-serif;color:#0B2B2D;background:#F2F8F8;padding-bottom:{{ bottomPad }};">
+
+  <sc-if value="{{ loaderMounted }}" hint-placeholder-val="{{ true }}">
+    <div role="status" aria-label="טוען" style="position:fixed;inset:0;z-index:100;pointer-events:{{ loaderPointer }};">
+      <div aria-hidden="true" style="position:absolute;inset:0 0 50% 0;background:#0B2B2D;transform:{{ loaderTopTf }};transition:transform .9s cubic-bezier(.76,0,.24,1);"></div>
+      <div aria-hidden="true" style="position:absolute;inset:50% 0 0 0;background:#0B2B2D;transform:{{ loaderBotTf }};transition:transform .9s cubic-bezier(.76,0,.24,1);"></div>
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;color:#FFFFFF;opacity:{{ loaderOpacity }};transform:{{ loaderTf }};transition:opacity .45s ease, transform .6s cubic-bezier(.76,0,.24,1);">
+        <div aria-hidden="true" style="position:absolute;width:min(70vw,520px);aspect-ratio:1/1;border-radius:50%;background:radial-gradient(circle, rgba(23,177,177,0.28) 0%, rgba(23,177,177,0) 65%);pointer-events:none;"></div>
+        <div style="position:relative;width:132px;height:132px;display:flex;align-items:center;justify-content:center;">
+          <span aria-hidden="true" style="position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(94,238,238,0.5);animation:loaderRing 2s ease-out infinite;"></span>
+          <span aria-hidden="true" style="position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(94,238,238,0.5);animation:loaderRing 2s ease-out 1s infinite;"></span>
+          <div aria-hidden="true" style="width:100%;height:100%;perspective:800px;"><div data-logo3d="spin" style="position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform;"><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-10.40px);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-8.80px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-7.20px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-5.60px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-4.00px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-2.40px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-0.80px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(0.80px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(2.40px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(4.00px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(5.60px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(7.20px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(8.80px);filter:brightness(0.72) saturate(1.15);pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(10.40px);pointer-events:none;"/></div></div>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <span style="font-size:24px;font-weight:600;letter-spacing:-0.01em;">פרופ' אייל שיינר</span>
+          <span style="font-size:13px;color:#A9D6D3;letter-spacing:0.08em;">מיילדות · גינקולוגיה · פיריון</span>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;width:min(260px,64vw);">
+          <div style="width:100%;height:2px;border-radius:999px;background:rgba(255,255,255,0.12);overflow:hidden;">
+            <div style="height:100%;width:{{ loaderW }};border-radius:999px;background:linear-gradient(90deg,#17B1B1,#5EEEEE);box-shadow:0 0 12px rgba(94,238,238,0.8);"></div>
+          </div>
+          <span dir="ltr" style="font-size:13px;font-weight:500;color:#5EEEEE;font-variant-numeric:tabular-nums;letter-spacing:0.1em;">{{ loaderPctText }}</span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <header style="position:sticky;top:0;z-index:30;padding:14px clamp(12px,3vw,32px) 0;">
+    <div data-header-bar="true" style="max-width:1320px;margin:0 auto;transition:box-shadow .3s, background .3s;background:rgba(255,255,255,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(14,124,127,0.10);border-radius:999px;padding:8px 8px 8px 8px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 8px 30px rgba(11,43,45,0.06);">
+      <a href="#home" aria-label="פרופ' אייל שיינר – דף הבית" style="display:flex;align-items:center;padding-inline-start:14px;">
+        <img src="./assets/logo.png" alt="אייל שיינר – מומחה למיילדות וגניקולוגיה" style="height:46px;width:auto;display:block;"/>
+      </a>
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;gap:4px;font-size:15px;font-weight:500;">
+          <a href="#about" style="padding:10px 14px;border-radius:999px;color:#0B2B2D;white-space:nowrap;" style-hover="background:#E1F3F2;color:#0E7C7F;">אודות</a>
+          <a href="#expertise" style="padding:10px 14px;border-radius:999px;color:#0B2B2D;white-space:nowrap;" style-hover="background:#E1F3F2;color:#0E7C7F;">תחומי התמחות</a>
+          <a href="#schedule" style="padding:10px 14px;border-radius:999px;color:#0B2B2D;white-space:nowrap;" style-hover="background:#E1F3F2;color:#0E7C7F;">הקליניקה</a>
+          <a href="#media" style="padding:10px 14px;border-radius:999px;color:#0B2B2D;white-space:nowrap;" style-hover="background:#E1F3F2;color:#0E7C7F;">פודקאסט</a>
+          <a href="#ami" style="padding:10px 14px;border-radius:999px;color:#0B2B2D;white-space:nowrap;" style-hover="background:#E1F3F2;color:#0E7C7F;">ספרי ילדים</a>
+          <a href="#contact" style="padding:10px 14px;border-radius:999px;color:#0B2B2D;white-space:nowrap;" style-hover="background:#E1F3F2;color:#0E7C7F;">צור קשר</a>
+        </nav>
+      </sc-if>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><a href="tel:035114428" style="background:#0E7C7F;color:#FFFFFF;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;white-space:nowrap;transition:background .2s;" style-hover="background:#0A5C5E;color:#FFFFFF;">לזימון תור</a></sc-if>
+        <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ toggleMenu }}" aria-label="תפריט" style="width:44px;height:44px;border-radius:50%;border:none;background:#E1F3F2;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;">
+            <span style="width:18px;height:2px;background:#0B2B2D;border-radius:2px;"></span>
+            <span style="width:18px;height:2px;background:#0B2B2D;border-radius:2px;"></span>
+          </button>
+        </sc-if>
+      </div>
+    </div>
+  </header>
+
+  <sc-if value="{{ menuMounted }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ overlayClick }}" style="position:fixed;inset:0;z-index:50;background:rgba(11,43,45,0.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:10px;display:flex;align-items:flex-start;opacity:{{ ovOpacity }};pointer-events:{{ ovPointer }};transition:opacity .45s ease;">
+      <div role="dialog" aria-label="תפריט" style="position:relative;width:100%;clip-path:{{ menuClip }};-webkit-clip-path:{{ menuClip }};transform:{{ menuTf }};transform-origin:12% 0%;transition:clip-path .7s cubic-bezier(.76,0,.24,1), -webkit-clip-path .7s cubic-bezier(.76,0,.24,1), transform .7s cubic-bezier(.76,0,.24,1);max-height:calc(100dvh - 20px);background:#FFFFFF;border-radius:28px;display:flex;flex-direction:column;padding:16px 20px calc(18px + env(safe-area-inset-bottom));gap:20px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 30px 80px rgba(11,43,45,0.25);">
+        <img src="./assets/logo-mark.png" alt="" aria-hidden="true" style="position:absolute;top:40px;left:-60px;width:200px;opacity:0.05;pointer-events:none;"/>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <a href="#home" onClick="{{ closeMenu }}" style="display:flex;align-items:center;gap:10px;color:#0B2B2D;">
+            <img src="./assets/logo-mark.png" alt="" aria-hidden="true" style="width:34px;height:auto;display:block;"/>
+            <span style="display:flex;flex-direction:column;line-height:1.15;"><span style="font-size:16px;font-weight:700;">פרופ' אייל שיינר</span><span style="font-size:12px;color:#557072;">מיילדות וגינקולוגיה</span></span>
+          </a>
+          <button onClick="{{ toggleMenu }}" aria-label="סגירה" style="width:44px;height:44px;border-radius:50%;border:none;background:#E1F3F2;color:#0B2B2D;font-size:22px;line-height:1;cursor:pointer;font-family:inherit;">×</button>
+        </div>
+        <nav style="position:relative;display:flex;flex-direction:column;margin-top:8px;border-top:1px solid #E1EEED;">
+        <a href="#about" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:14px;padding:11px 4px;border-bottom:1px solid #E1EEED;color:#0B2B2D;opacity:{{ itemOp }};transform:{{ itemTf }};transition:color .25s, padding .25s, opacity .5s ease calc({{ stagger }} * 180ms), transform .6s cubic-bezier(.2,.8,.2,1) calc({{ stagger }} * 180ms);" style-hover="color:#0E7C7F;padding-inline-start:10px;"><span style="font-size:12px;font-weight:600;color:#8FB7B5;min-width:20px;font-variant-numeric:tabular-nums;">01</span><span style="font-size:20px;font-weight:500;letter-spacing:-0.01em;">אודות</span></a>
+        <a href="#expertise" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:14px;padding:11px 4px;border-bottom:1px solid #E1EEED;color:#0B2B2D;opacity:{{ itemOp }};transform:{{ itemTf }};transition:color .25s, padding .25s, opacity .5s ease calc({{ stagger }} * 235ms), transform .6s cubic-bezier(.2,.8,.2,1) calc({{ stagger }} * 235ms);" style-hover="color:#0E7C7F;padding-inline-start:10px;"><span style="font-size:12px;font-weight:600;color:#8FB7B5;min-width:20px;font-variant-numeric:tabular-nums;">02</span><span style="font-size:20px;font-weight:500;letter-spacing:-0.01em;">תחומי התמחות</span></a>
+        <a href="#Occupation" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:14px;padding:11px 4px;border-bottom:1px solid #E1EEED;color:#0B2B2D;opacity:{{ itemOp }};transform:{{ itemTf }};transition:color .25s, padding .25s, opacity .5s ease calc({{ stagger }} * 290ms), transform .6s cubic-bezier(.2,.8,.2,1) calc({{ stagger }} * 290ms);" style-hover="color:#0E7C7F;padding-inline-start:10px;"><span style="font-size:12px;font-weight:600;color:#8FB7B5;min-width:20px;font-variant-numeric:tabular-nums;">03</span><span style="font-size:20px;font-weight:500;letter-spacing:-0.01em;">השירותים בקליניקה</span></a>
+        <a href="#schedule" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:14px;padding:11px 4px;border-bottom:1px solid #E1EEED;color:#0B2B2D;opacity:{{ itemOp }};transform:{{ itemTf }};transition:color .25s, padding .25s, opacity .5s ease calc({{ stagger }} * 345ms), transform .6s cubic-bezier(.2,.8,.2,1) calc({{ stagger }} * 345ms);" style-hover="color:#0E7C7F;padding-inline-start:10px;"><span style="font-size:12px;font-weight:600;color:#8FB7B5;min-width:20px;font-variant-numeric:tabular-nums;">04</span><span style="font-size:20px;font-weight:500;letter-spacing:-0.01em;">מיקום וזמנים</span></a>
+        <a href="#media" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:14px;padding:11px 4px;border-bottom:1px solid #E1EEED;color:#0B2B2D;opacity:{{ itemOp }};transform:{{ itemTf }};transition:color .25s, padding .25s, opacity .5s ease calc({{ stagger }} * 400ms), transform .6s cubic-bezier(.2,.8,.2,1) calc({{ stagger }} * 400ms);" style-hover="color:#0E7C7F;padding-inline-start:10px;"><span style="font-size:12px;font-weight:600;color:#8FB7B5;min-width:20px;font-variant-numeric:tabular-nums;">05</span><span style="font-size:20px;font-weight:500;letter-spacing:-0.01em;">פודקאסט וסרטונים</span></a>
+        <a href="#ami" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:14px;padding:11px 4px;border-bottom:1px solid #E1EEED;color:#0B2B2D;opacity:{{ itemOp }};transform:{{ itemTf }};transition:color .25s, padding .25s, opacity .5s ease calc({{ stagger }} * 455ms), transform .6s cubic-bezier(.2,.8,.2,1) calc({{ stagger }} * 455ms);" style-hover="color:#0E7C7F;padding-inline-start:10px;"><span style="font-size:12px;font-weight:600;color:#8FB7B5;min-width:20px;font-variant-numeric:tabular-nums;">06</span><span style="font-size:20px;font-weight:500;letter-spacing:-0.01em;">ספרי ילדים</span></a>
+        <a href="#contact" onClick="{{ closeMenu }}" style="display:flex;align-items:baseline;gap:14px;padding:11px 4px;border-bottom:1px solid #E1EEED;color:#0B2B2D;opacity:{{ itemOp }};transform:{{ itemTf }};transition:color .25s, padding .25s, opacity .5s ease calc({{ stagger }} * 510ms), transform .6s cubic-bezier(.2,.8,.2,1) calc({{ stagger }} * 510ms);" style-hover="color:#0E7C7F;padding-inline-start:10px;"><span style="font-size:12px;font-weight:600;color:#8FB7B5;min-width:20px;font-variant-numeric:tabular-nums;">07</span><span style="font-size:20px;font-weight:500;letter-spacing:-0.01em;">צור קשר</span></a>
+        </nav>
+        <div style="position:relative;display:flex;flex-direction:column;gap:14px;opacity:{{ itemOp }};transform:{{ itemTf }};transition:opacity .5s ease calc({{ stagger }} * 600ms), transform .6s cubic-bezier(.2,.8,.2,1) calc({{ stagger }} * 600ms);">
+          <div style="display:flex;gap:8px;justify-content:center;"><a href="https://www.tiktok.com/@prof_eyal_sheiner" aria-label="TikTok" style="width:44px;height:44px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"></path></svg></a><a href="https://www.instagram.com/eyalsheiner/" aria-label="Instagram" style="width:44px;height:44px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"></circle></svg></a><a href="https://www.youtube.com/user/dagimyafim" aria-label="YouTube" style="width:44px;height:44px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10.5 9.5l4 2.5-4 2.5z" fill="currentColor"></path></svg></a><a href="https://open.spotify.com/show/0OQnglgNAHROK4QMU7sZxB" aria-label="Spotify" style="width:44px;height:44px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.5c3-1 6.5-.7 9 .8"></path><path d="M8 12.6c2.4-.7 5-.5 7.2.7"></path><path d="M8.6 15.5c1.8-.5 3.7-.3 5.3.5"></path></svg></a></div>
+          <a href="tel:035114428" style="display:flex;justify-content:space-between;align-items:center;background:#0E7C7F;color:#FFFFFF;padding:16px 20px;border-radius:18px;font-weight:600;font-size:16px;"><span>לזימון תור</span><span dir="ltr" style="font-weight:500;">03-5114428</span></a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <main style="max-width:1320px;margin:0 auto;padding:16px clamp(12px,3vw,32px) 0;display:flex;flex-direction:column;gap:clamp(64px,9vw,120px);">
+
+    <section id="home" style="display:flex;flex-direction:column;gap:clamp(28px,4vw,48px);padding-top:clamp(20px,4vw,56px);">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:center;">
+        <div style="flex:1.2 1 340px;display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);">
+          <h1 data-reveal="true" data-reveal-delay="80" style="margin:0;display:flex;flex-direction:column;gap:clamp(10px,1.4vw,18px);">
+            <span style="font-size:clamp(40px,5.4vw,78px);font-weight:600;line-height:1;letter-spacing:-0.03em;color:#0B2B2D;">פרופ' אייל שיינר</span>
+            <span style="font-size:clamp(20px,2vw,28px);font-weight:300;line-height:1.25;letter-spacing:-0.01em;color:#0E7C7F;">מומחה למיילדות, גינקולוגיה ופיריון</span>
+          </h1>
+          <p data-reveal="true" data-reveal-delay="180" style="margin:0;font-size:clamp(18px,1.5vw,20px);line-height:1.65;color:#36504F;max-width:520px;text-wrap:pretty;">מעל 25 שנות ניסיון בליווי נשים בהריון, לידות מורכבות, ניתוחים קיסריים וטיפול בהריונות בסיכון גבוה. כאן בשבילך – לכל שאלה, דאגה או ליווי רפואי מקצועי.</p>
+          <div data-reveal="true" data-reveal-delay="260" style="display:flex;gap:14px 28px;flex-wrap:wrap;align-items:center;">
+            <a href="#expertise" style="background:#0B2B2D;color:#FFFFFF;padding:18px 30px;border-radius:14px;font-weight:600;font-size:17px;white-space:nowrap;transition:background .25s, transform .25s;" style-hover="background:#0E7C7F;color:#FFFFFF;transform:translateY(-2px);">תחומי ההתמחות</a>
+            <a href="#about" style="font-size:17px;font-weight:500;color:#0B2B2D;border-bottom:1.5px solid #8FCFCB;padding-bottom:3px;white-space:nowrap;transition:border-color .25s, color .25s;" style-hover="color:#0E7C7F;border-color:#0E7C7F;">אודות פרופ' שיינר</a>
+          </div>
+        </div>
+        <div data-reveal="true" data-reveal-delay="140" style="flex:1 1 300px;max-width:560px;margin-inline:auto;position:relative;">
+          <div style="position:relative;width:100%;aspect-ratio:609/713;">
+            <div style="position:absolute;left:0;right:0;bottom:0;height:80%;border-radius:999px 999px 32px 32px;background:#17B1B1;overflow:hidden;">
+              <div style="position:absolute;width:120%;aspect-ratio:1/1;border-radius:50%;background:#5EEEEE;left:-10%;top:72%;"></div>
+            </div>
+            <div style="position:absolute;width:22%;aspect-ratio:1/1;border-radius:50%;background:#5EEEEE;top:8%;right:-2%;"></div>
+            <div style="position:absolute;inset:0;clip-path:inset(-50% 0 0 0 round 0 0 32px 32px);">
+              <img src="./assets/hero-portrait.webp" alt="פרופ' אייל שיינר" style="position:absolute;left:0;bottom:0;width:100%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(11,43,45,0.18));"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><div data-reveal-stagger="true" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));row-gap:6px;border-top:1px solid #D6E8E7;">
+        <div style="padding:22px 0 0 20px;display:flex;align-items:baseline;gap:12px;"><span style="font-size:clamp(30px,2.8vw,40px);font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+25</span><span style="font-size:15px;color:#557072;">שנות ניסיון</span></div>
+        <div style="padding:22px 0 0 20px;display:flex;align-items:baseline;gap:12px;"><span style="font-size:clamp(30px,2.8vw,40px);font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+150</span><span style="font-size:15px;color:#557072;">מאמרים מדעיים</span></div>
+        <div style="padding:22px 0 0 20px;display:flex;align-items:baseline;gap:12px;"><span style="font-size:clamp(30px,2.8vw,40px);font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">11</span><span style="font-size:15px;color:#557072;">ספרי רפואה</span></div>
+        <div style="padding:22px 0 0 20px;display:flex;align-items:baseline;gap:12px;"><span style="font-size:clamp(30px,2.8vw,40px);font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+1500</span><span style="font-size:15px;color:#557072;">נשים שלוו</span></div>
+      </div></sc-if>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}"><div aria-label="+25 שנות ניסיון, +150 מאמרים מדעיים, 11 ספרי רפואה, +1500 נשים שלוו" style="position:relative;overflow:hidden;border-top:1px solid #D6E8E7;border-bottom:1px solid #D6E8E7;padding:18px 0;margin-inline:calc(-1 * clamp(12px,3vw,32px));-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);">
+          <div aria-hidden="true" style="display:flex;width:max-content;animation:statsMarquee 22s linear infinite;">
+            <div style="display:flex;align-items:center;gap:28px;padding-inline-end:28px;"><span style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;"><span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+25</span><span style="font-size:15px;color:#557072;white-space:nowrap;">שנות ניסיון</span></span><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:#5EEEEE;flex-shrink:0;"></span><span style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;"><span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+150</span><span style="font-size:15px;color:#557072;white-space:nowrap;">מאמרים מדעיים</span></span><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:#5EEEEE;flex-shrink:0;"></span><span style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;"><span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">11</span><span style="font-size:15px;color:#557072;white-space:nowrap;">ספרי רפואה</span></span><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:#5EEEEE;flex-shrink:0;"></span><span style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;"><span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+1500</span><span style="font-size:15px;color:#557072;white-space:nowrap;">נשים שלוו</span></span><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:#5EEEEE;flex-shrink:0;"></span></div>
+            <div style="display:flex;align-items:center;gap:28px;padding-inline-end:28px;"><span style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;"><span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+25</span><span style="font-size:15px;color:#557072;white-space:nowrap;">שנות ניסיון</span></span><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:#5EEEEE;flex-shrink:0;"></span><span style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;"><span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+150</span><span style="font-size:15px;color:#557072;white-space:nowrap;">מאמרים מדעיים</span></span><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:#5EEEEE;flex-shrink:0;"></span><span style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;"><span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">11</span><span style="font-size:15px;color:#557072;white-space:nowrap;">ספרי רפואה</span></span><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:#5EEEEE;flex-shrink:0;"></span><span style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;"><span style="font-size:30px;font-weight:600;letter-spacing:-0.02em;color:#0B2B2D;">+1500</span><span style="font-size:15px;color:#557072;white-space:nowrap;">נשים שלוו</span></span><span aria-hidden="true" style="width:6px;height:6px;border-radius:50%;background:#5EEEEE;flex-shrink:0;"></span></div>
+          </div>
+        </div></sc-if>
+    </section>
+
+    <section id="about" style="display:flex;flex-wrap:wrap;gap:clamp(40px,6vw,96px);align-items:center;">
+      <div style="flex:1.4 1 420px;display:flex;flex-direction:column;gap:28px;">
+        <h2 data-reveal="true" style="margin:0;font-size:clamp(32px,3.4vw,48px);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:#0B2B2D;">אודות פרופ' אייל שיינר</h2>
+        <p data-reveal="true" style="margin:0;font-size:clamp(20px,1.9vw,25px);font-weight:400;line-height:1.5;color:#0E7C7F;text-wrap:pretty;">פרופ' אייל שיינר הוא רופא מומחה למיילדות, גינקולוגיה ופיריון, פרופסור מן המניין, וחוקר מוביל בתחום רפואת האם והעובר.</p>
+        <div data-reveal="true" style="display:flex;flex-direction:column;gap:18px;max-width:640px;">
+          <p style="margin:0;font-size:17px;line-height:1.8;color:#36504F;text-wrap:pretty;">בעל ניסיון של למעלה מ-25 שנים בטיפול בנשים הרות, לידות מורכבות, ניתוחים קיסריים והריונות בסיכון גבוה. לאורך השנים, העניק טיפול מסור לאלפי נשים, תוך ליווי אישי ומקצועי מהשלבים הראשונים של ההיריון ועד לרגע הלידה.</p>
+          <p style="margin:0;font-size:17px;line-height:1.8;color:#36504F;text-wrap:pretty;">בנוסף, הוא פעיל במחקר רפואי מתקדם, פרסם מאות מאמרים מדעיים בכתבי עת מובילים, חיבר 11 ספרי רפואה, ומרצה בכנסים רפואיים בינלאומיים.</p>
+        </div>
+        <div data-reveal="true" data-reveal-delay="120" style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+        <span style="font-size:14px;font-weight:600;color:#557072;padding-bottom:6px;border-bottom:2px solid #0B2B2D;">תפקידים ומינויים</span>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));column-gap:32px;">
+          <li style="display:flex;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDEDEC;"><span style="flex-shrink:0;min-width:52px;font-size:13px;font-weight:600;color:#0E7C7F;">כיום</span><span style="font-size:17px;line-height:1.5;color:#0B2B2D;">יו”ר החטיבה למיילדות וגינקולוגיה, בית החולים סורוקה</span></li>
+          <li style="display:flex;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDEDEC;"><span style="flex-shrink:0;min-width:52px;font-size:13px;font-weight:600;color:#0E7C7F;">כיום</span><span style="font-size:17px;line-height:1.5;color:#0B2B2D;">יו”ר וועדת הבחינה ביילוד וגניקולוגיה בהסתדרות הרפואית</span></li>
+          <li style="display:flex;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDEDEC;"><span style="flex-shrink:0;min-width:52px;font-size:13px;font-weight:600;color:#557072;">בעבר</span><span style="font-size:17px;line-height:1.5;color:#0B2B2D;">סגן מנהל בית חולים סורוקה</span></li>
+          <li style="display:flex;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid #DDEDEC;"><span style="flex-shrink:0;min-width:52px;font-size:13px;font-weight:600;color:#557072;">בעבר</span><span style="font-size:17px;line-height:1.5;color:#0B2B2D;">סגן דיקן הפקולטה למדעי הבריאות</span></li>
+        </ul>
+      </div>
+      </div>
+      
+      <div data-reveal="true" data-reveal-delay="120" style="order:{{ aboutPhotoOrder }};flex:1 1 320px;max-width:520px;margin-inline:auto;display:flex;flex-direction:column;">
+        <img src="./assets/about-portrait-cut3.png" alt="פרופ' אייל שיינר" style="width:100%;height:auto;display:block;"/>
+        <div style="height:2px;background:#0B2B2D;margin-top:-1px;"></div>
+      </div>
+    </section>
+
+    <section id="expertise" style="display:flex;flex-direction:column;gap:32px;">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:760px;">
+        <h2 data-reveal="true" style="margin:0;font-size:clamp(34px,4.4vw,64px);font-weight:700;line-height:1;letter-spacing:-0.02em;">תחומי ההתמחות</h2>
+        <p style="margin:0;font-size:18px;line-height:1.7;color:#36504F;text-wrap:pretty;">פרופ' אייל שיינר מומחה במיילדות, גינקולוגיה והריונות בסיכון גבוה, ומספק טיפול רפואי מותאם אישית לנשים בכל שלבי ההיריון. עם ניסיון של למעלה מ-25 שנים, ידע קליני מעמיק ומחקר רפואי חדשני, הוא מלווה נשים בהריון, בלידה ובתהליכים רפואיים מורכבים.</p>
+      </div>
+      <div data-reveal-stagger="true" style="display:flex;flex-wrap:wrap;gap:16px;">
+        <div style="flex:1.2 1 380px;background:#0E7C7F;color:#FFFFFF;border-radius:clamp(22px,3.2vw,32px);padding:clamp(26px,3.5vw,40px);display:flex;flex-direction:column;gap:20px;">
+          <h3 style="margin:0;font-size:clamp(26px,2.6vw,34px);font-weight:700;line-height:1.1;">הריונות בסיכון גבוה</h3>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#CBE4E2;">פרופ' שיינר מומחה בניהול והובלת הריונות מורכבים, כולל:</p>
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;"><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.16);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">✓</span><span>היריון עם סוכרת הריונית או יתר לחץ דם</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.16);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">✓</span><span>היריון מרובה עוברים</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.16);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">✓</span><span>היסטוריה של לידות מוקדמות או סיבוכים בהריונות קודמים</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.16);color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">✓</span><span>מצבים רפואיים שעלולים להשפיע על ההיריון</span></li></ul>
+        </div>
+        <div style="flex:1 1 320px;background:#FFFFFF;border-radius:clamp(22px,3.2vw,32px);padding:clamp(26px,3.5vw,40px);display:flex;flex-direction:column;gap:20px;">
+          <h3 style="margin:0;font-size:clamp(26px,2.6vw,34px);font-weight:700;line-height:1.1;">בדיקות ומעקב היריון מתקדם</h3>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#36504F;">ליווי רפואי מקיף הוא המפתח להיריון בריא. פרופ' שיינר מבצע מעקב הריון אישי, הכולל:</p>
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;color:#0B2B2D;"><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#D4F1EF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">✓</span><span>שקיפות עורפית ואולטרסאונד מתקדם</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#D4F1EF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">✓</span><span>הערכת משקל עוברית ומעקב התפתחות</span></li><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#D4F1EF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">✓</span><span>זרימות דם לעובר</span></li></ul>
+        </div>
+        <div style="flex:1 1 320px;background:#D4F1EF;border-radius:clamp(22px,3.2vw,32px);padding:clamp(26px,3.5vw,40px);display:flex;flex-direction:column;gap:20px;">
+          <h3 style="margin:0;font-size:clamp(26px,2.6vw,34px);font-weight:700;line-height:1.1;">ניתוחים קיסריים ולידות מורכבות</h3>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#36504F;">פרופ' שיינר ביצע מאות ניתוחים קיסריים ומומחה בביצוע הליכים כירורגיים מתקדמים, תוך דגש על בטיחות האם והיילוד.</p>
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;color:#0B2B2D;"><li style="display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55;"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#D4F1EF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">✓</span><span>ניתוחים קיסריים אלקטיביים ודחופים</span></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="Occupation" style="display:flex;flex-wrap:wrap;gap:clamp(32px,6vw,96px);align-items:flex-start;">
+      <div data-reveal="true" style="flex:1 1 300px;max-width:420px;display:flex;flex-direction:column;gap:22px;position:{{ stickyPos }};top:110px;">
+        <span style="font-size:15px;font-weight:600;color:#0E7C7F;">מה מקבלים בקליניקה</span>
+        <h2 style="margin:0;font-size:clamp(32px,3.6vw,50px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;color:#0B2B2D;">השירותים בקליניקה</h2>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:#E1F3F2;border-radius:16px;padding:16px 18px;">
+          <span style="flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#0E7C7F;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;">!</span>
+          <span style="font-size:15px;line-height:1.55;color:#0B2B2D;">שימו לב: הפרופסור אינו מבצע סקירות מערכות.</span>
+        </div>
+        <a href="tel:035114428" style="align-self:flex-start;background:#0E7C7F;color:#FFFFFF;padding:16px 26px;border-radius:14px;font-weight:600;font-size:16px;white-space:nowrap;transition:background .25s;" style-hover="background:#0A5C5E;color:#FFFFFF;">לזימון תור</a>
+      </div>
+      <div data-reveal-stagger="true" style="flex:2 1 460px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));column-gap:16px;border-top:1px solid #D6E8E7;">
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;padding:clamp(18px,2.4vw,26px) clamp(6px,1.6vw,20px);border-bottom:1px solid #D6E8E7;border-radius:18px;transition:background .3s, padding .3s;" style-hover="background:#FFFFFF;padding-inline-start:28px;">
+            <span style="font-size:14px;font-weight:600;color:#0E7C7F;min-width:28px;font-variant-numeric:tabular-nums;">01</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.3;color:#0B2B2D;">מעקב הריון</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#557072;text-wrap:pretty;">ליווי אישי ומקצועי לאורך כל שלבי ההיריון, משלב הגילוי ועד ללידה, לבריאות האם והעובר.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;padding:clamp(18px,2.4vw,26px) clamp(6px,1.6vw,20px);border-bottom:1px solid #D6E8E7;border-radius:18px;transition:background .3s, padding .3s;" style-hover="background:#FFFFFF;padding-inline-start:28px;">
+            <span style="font-size:14px;font-weight:600;color:#0E7C7F;min-width:28px;font-variant-numeric:tabular-nums;">02</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.3;color:#0B2B2D;">מעקב הריון בסיכון גבוה</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#557072;text-wrap:pretty;">מומחיות בניהול סיכונים בשלבים השונים ורפואת אם-עובר למקרים מורכבים במיוחד.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;padding:clamp(18px,2.4vw,26px) clamp(6px,1.6vw,20px);border-bottom:1px solid #D6E8E7;border-radius:18px;transition:background .3s, padding .3s;" style-hover="background:#FFFFFF;padding-inline-start:28px;">
+            <span style="font-size:14px;font-weight:600;color:#0E7C7F;min-width:28px;font-variant-numeric:tabular-nums;">03</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.3;color:#0B2B2D;">אולטרסאונד תלת מימדי כולל תיארוך הריון</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#557072;text-wrap:pretty;">הדמיות מתקדמות במיוחד למעקב מקיף אחר התפתחות תקינה של העובר.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;padding:clamp(18px,2.4vw,26px) clamp(6px,1.6vw,20px);border-bottom:1px solid #D6E8E7;border-radius:18px;transition:background .3s, padding .3s;" style-hover="background:#FFFFFF;padding-inline-start:28px;">
+            <span style="font-size:14px;font-weight:600;color:#0E7C7F;min-width:28px;font-variant-numeric:tabular-nums;">04</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.3;color:#0B2B2D;">שקיפות עורפית והערכות משקל</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#557072;text-wrap:pretty;">ביצוע בדיקות סקר גנטיות והערכת גדילה מקצועית ומדויקת.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;padding:clamp(18px,2.4vw,26px) clamp(6px,1.6vw,20px);border-bottom:1px solid #D6E8E7;border-radius:18px;transition:background .3s, padding .3s;" style-hover="background:#FFFFFF;padding-inline-start:28px;">
+            <span style="font-size:14px;font-weight:600;color:#0E7C7F;min-width:28px;font-variant-numeric:tabular-nums;">05</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.3;color:#0B2B2D;">דיקורי מי שפיר</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#557072;text-wrap:pretty;">בדיקות לפרופיל הגנטי באמצעות דיקור מי שפיר ברמת הבטיחות הגבוהה ביותר.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;padding:clamp(18px,2.4vw,26px) clamp(6px,1.6vw,20px);border-bottom:1px solid #D6E8E7;border-radius:18px;transition:background .3s, padding .3s;" style-hover="background:#FFFFFF;padding-inline-start:28px;">
+            <span style="font-size:14px;font-weight:600;color:#0E7C7F;min-width:28px;font-variant-numeric:tabular-nums;">06</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.3;color:#0B2B2D;">ניתוחים קיסריים</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#557072;text-wrap:pretty;">ניסיון עתיר בניתוחים קיסריים יזומים וחירומיים תוך דגש על שלוות היולדת והתאוששות.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;padding:clamp(18px,2.4vw,26px) clamp(6px,1.6vw,20px);border-bottom:1px solid #D6E8E7;border-radius:18px;transition:background .3s, padding .3s;" style-hover="background:#FFFFFF;padding-inline-start:28px;">
+            <span style="font-size:14px;font-weight:600;color:#0E7C7F;min-width:28px;font-variant-numeric:tabular-nums;">07</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.3;color:#0B2B2D;">גניקולוגיה</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#557072;text-wrap:pretty;">ייעוץ, אבחון וטיפול בכל תחומי רפואת הנשים ומניעה מוקדמת דרך מעקב שוטף.</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:baseline;padding:clamp(18px,2.4vw,26px) clamp(6px,1.6vw,20px);border-bottom:1px solid #D6E8E7;border-radius:18px;transition:background .3s, padding .3s;" style-hover="background:#FFFFFF;padding-inline-start:28px;">
+            <span style="font-size:14px;font-weight:600;color:#0E7C7F;min-width:28px;font-variant-numeric:tabular-nums;">08</span>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <h3 style="margin:0;font-size:clamp(19px,1.7vw,23px);font-weight:600;line-height:1.3;color:#0B2B2D;">טיפולי פוריות</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#557072;text-wrap:pretty;">אבחוני פוריות מקיפים ובניית תוכניות טיפול מותאמות אישית בדרך להורות.</p>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <section id="schedule" style="display:flex;flex-direction:column;gap:clamp(24px,3vw,36px);">
+      <div data-reveal="true" style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px 32px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span style="font-size:15px;font-weight:600;color:#0E7C7F;">מיקום וזמנים</span>
+          <h2 style="margin:0;font-size:clamp(30px,3.4vw,46px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;color:#0B2B2D;">קליניקה פרטית, אקליפטוס 33, עומר</h2>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="https://waze.com/ul?q=%D7%90%D7%A7%D7%9C%D7%99%D7%A4%D7%98%D7%95%D7%A1%2033%20%D7%A2%D7%95%D7%9E%D7%A8" style="background:#0E7C7F;color:#FFFFFF;padding:14px 22px;border-radius:14px;font-weight:600;font-size:15px;white-space:nowrap;transition:background .25s;" style-hover="background:#0A5C5E;color:#FFFFFF;">ניווט ב-Waze</a>
+          <a href="tel:035114428" style="background:#FFFFFF;color:#0B2B2D;border:1px solid #CBE4E2;padding:14px 22px;border-radius:14px;font-weight:600;font-size:15px;white-space:nowrap;transition:background .25s;" style-hover="background:#E1F3F2;color:#0B2B2D;">לזימון תור</a>
+        </div>
+      </div>
+      <div data-reveal-stagger="true" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px clamp(20px,3vw,40px);">
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid #D6E8E7;"><span style="font-size:13px;font-weight:600;color:#0E7C7F;">הגעה</span><span style="font-size:16px;line-height:1.6;color:#36504F;">כניסה בשביל מימין לבית (לא דרך החצר)</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid #D6E8E7;"><span style="font-size:13px;font-weight:600;color:#0E7C7F;">טיפולים ומעקבים</span><div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="background:#E1F3F2;color:#0B2B2D;padding:7px 12px;border-radius:999px;font-size:14px;white-space:nowrap;">בדיקות גניקולוגיות</span><span style="background:#E1F3F2;color:#0B2B2D;padding:7px 12px;border-radius:999px;font-size:14px;white-space:nowrap;">בירורי פיריון וטיפולים ראשוניים</span><span style="background:#E1F3F2;color:#0B2B2D;padding:7px 12px;border-radius:999px;font-size:14px;white-space:nowrap;">מעקבי היריון</span><span style="background:#E1F3F2;color:#0B2B2D;padding:7px 12px;border-radius:999px;font-size:14px;white-space:nowrap;">הערכות גדילה וזרימות</span><span style="background:#E1F3F2;color:#0B2B2D;padding:7px 12px;border-radius:999px;font-size:14px;white-space:nowrap;">שקיפות עורפית</span></div></div>
+        <div style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid #D6E8E7;"><span style="font-size:13px;font-weight:600;color:#0E7C7F;">קופות וביטוחים</span><span style="font-size:16px;line-height:1.6;color:#36504F;">פרופ' שיינר עובד עם רשת הרופאים של כללית מושלם ומוכר ע״י ביטוחים פרטיים ורב הקופות.</span></div>
+      </div>
+      <sc-if value="{{ showEmbeds }}" hint-placeholder-val="{{ true }}">
+        <div data-reveal="true" style="display:flex;flex-wrap:wrap;gap:12px;">
+          <div style="flex:1.6 1 380px;position:relative;height:clamp(300px,34vw,420px);border-radius:24px;overflow:hidden;background:#E1F3F2;">
+            <iframe src="https://my.matterport.com/show/?m=r2P9eTASfd5" title="סיור וירטואלי בקליניקה" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;" loading="lazy" allowfullscreen="allowfullscreen"></iframe>
+            <span style="position:absolute;top:14px;right:14px;background:#FFFFFF;color:#0B2B2D;padding:7px 13px;border-radius:999px;font-size:13px;font-weight:600;pointer-events:none;box-shadow:0 4px 14px rgba(11,43,45,0.12);">סיור וירטואלי</span>
+          </div>
+          <div style="flex:1 1 280px;position:relative;height:clamp(300px,34vw,420px);border-radius:24px;overflow:hidden;background:#E1F3F2;">
+            <iframe src="https://www.google.com/maps?q=%D7%A4%D7%A8%D7%95%D7%A4%20%D7%90%D7%99%D7%99%D7%9C%20%D7%A9%D7%99%D7%99%D7%A0%D7%A8&amp;output=embed&amp;hl=he-IL&amp;z=12" title="מפה" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block;" loading="lazy"></iframe>
+          </div>
+        </div>
+      </sc-if>
+    </section>
+
+    <section id="media" style="display:flex;flex-direction:column;gap:16px;">
+      <div data-reveal-stagger="true" style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
+        <div style="flex:1.4 1 460px;background:#FFFFFF;border-radius:clamp(22px,3.2vw,32px);padding:clamp(24px,4vw,44px);display:flex;flex-direction:column;gap:20px;">
+          <span style="font-size:15px;font-weight:600;color:#0E7C7F;">האזינו עכשיו</span>
+          <h2 data-reveal="true" style="margin:0;font-size:clamp(30px,3.6vw,48px);font-weight:700;line-height:1.05;letter-spacing:-0.02em;">הפודקאסט שלנו</h2>
+          <p style="margin:0;font-size:17px;line-height:1.7;color:#36504F;text-wrap:pretty;">פרופסור שיינר מגיש פודקאסט מרתק ומקצועי הכולל פרקים חדשים, טיפים, מענה לשאלות נפוצות, ומידע חיוני לנשים, הרות ויולדות.</p>
+          <sc-if value="{{ showEmbeds }}" hint-placeholder-val="{{ true }}">
+            <iframe src="https://open.spotify.com/embed/show/0OQnglgNAHROK4QMU7sZxB?utm_source=generator&amp;theme=0" title="Spotify" style="width:100%;height:{{ spotifyH }};border:0;border-radius:16px;" loading="lazy" allow="encrypted-media"></iframe>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px;margin-top:40px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-size:15px;font-weight:600;color:#0E7C7F;">@eyalsheiner</span>
+            <h2 data-reveal="true" style="margin:0;font-size:clamp(30px,3.6vw,48px);font-weight:700;letter-spacing:-0.02em;">הרילס האחרונים</h2>
+          </div>
+          <a href="https://www.instagram.com/eyalsheiner/" style="font-size:15px;font-weight:600;background:#FFFFFF;padding:10px 18px;border-radius:999px;white-space:nowrap;" style-hover="background:#E1F3F2;">לעמוד האינסטגרם</a>
+        </div>
+        <sc-if value="{{ hasFeed }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#FFFFFF;border-radius:clamp(22px,3.2vw,32px);padding:clamp(12px,2vw,20px);min-height:200px;">{{ feedWidget }}</div>
+        </sc-if>
+        <sc-if value="{{ noFeed }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-auto-flow:column;grid-auto-columns:minmax(min(42vw,220px),1fr);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;"><a href="https://www.instagram.com/eyalsheiner/" style="position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#E1F3F2,#CBE4E2);display:flex;align-items:flex-end;padding:14px;transition:transform .3s;" style-hover="transform:translateY(-4px);"><span style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.85);color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:11px;padding-left:2px;">▶</span><span style="font-size:13px;font-weight:600;color:#0E7C7F;">Reel 1</span></a><a href="https://www.instagram.com/eyalsheiner/" style="position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#E1F3F2,#CBE4E2);display:flex;align-items:flex-end;padding:14px;transition:transform .3s;" style-hover="transform:translateY(-4px);"><span style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.85);color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:11px;padding-left:2px;">▶</span><span style="font-size:13px;font-weight:600;color:#0E7C7F;">Reel 2</span></a><a href="https://www.instagram.com/eyalsheiner/" style="position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#E1F3F2,#CBE4E2);display:flex;align-items:flex-end;padding:14px;transition:transform .3s;" style-hover="transform:translateY(-4px);"><span style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.85);color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:11px;padding-left:2px;">▶</span><span style="font-size:13px;font-weight:600;color:#0E7C7F;">Reel 3</span></a><a href="https://www.instagram.com/eyalsheiner/" style="position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#E1F3F2,#CBE4E2);display:flex;align-items:flex-end;padding:14px;transition:transform .3s;" style-hover="transform:translateY(-4px);"><span style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.85);color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:11px;padding-left:2px;">▶</span><span style="font-size:13px;font-weight:600;color:#0E7C7F;">Reel 4</span></a><a href="https://www.instagram.com/eyalsheiner/" style="position:relative;aspect-ratio:9/16;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#E1F3F2,#CBE4E2);display:flex;align-items:flex-end;padding:14px;transition:transform .3s;" style-hover="transform:translateY(-4px);"><span style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.85);color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:11px;padding-left:2px;">▶</span><span style="font-size:13px;font-weight:600;color:#0E7C7F;">Reel 5</span></a></div>
+        </sc-if>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px;margin-top:40px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;">
+          <h2 data-reveal="true" style="margin:0;font-size:clamp(30px,3.6vw,48px);font-weight:700;letter-spacing:-0.02em;">סרטונים</h2>
+          <a href="https://www.youtube.com/user/dagimyafim/videos" style="font-size:15px;font-weight:600;background:#FFFFFF;padding:10px 18px;border-radius:999px;" style-hover="background:#E1F3F2;">לכל הסרטונים בערוץ</a>
+        </div>
+        <div style="display:grid;grid-auto-flow:column;grid-auto-columns:minmax(min(78vw,300px),32%);scroll-padding-inline:2px;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin;">
+          <a href="https://www.youtube.com/watch?v=2HqwyUlS-o0" style="scroll-snap-align:start;position:relative;display:block;aspect-ratio:16/10;border-radius:24px;overflow:hidden;background:#D4F1EF;" style-hover="opacity:0.9;"><img src="https://img.youtube.com/vi/2HqwyUlS-o0/hqdefault.jpg" alt="סרטון" style="width:100%;height:100%;object-fit:cover;display:block;"/><span style="position:absolute;bottom:14px;right:14px;width:48px;height:48px;border-radius:50%;background:#FFFFFF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:16px;">▶</span></a>
+          <a href="https://www.youtube.com/watch?v=y31vrgRTpjw" style="scroll-snap-align:start;position:relative;display:block;aspect-ratio:16/10;border-radius:24px;overflow:hidden;background:#D4F1EF;" style-hover="opacity:0.9;"><img src="https://img.youtube.com/vi/y31vrgRTpjw/hqdefault.jpg" alt="סרטון" style="width:100%;height:100%;object-fit:cover;display:block;"/><span style="position:absolute;bottom:14px;right:14px;width:48px;height:48px;border-radius:50%;background:#FFFFFF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:16px;">▶</span></a>
+          <a href="https://www.youtube.com/watch?v=MaUf17fzGR4" style="scroll-snap-align:start;position:relative;display:block;aspect-ratio:16/10;border-radius:24px;overflow:hidden;background:#D4F1EF;" style-hover="opacity:0.9;"><img src="https://img.youtube.com/vi/MaUf17fzGR4/hqdefault.jpg" alt="סרטון" style="width:100%;height:100%;object-fit:cover;display:block;"/><span style="position:absolute;bottom:14px;right:14px;width:48px;height:48px;border-radius:50%;background:#FFFFFF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:16px;">▶</span></a>
+          <a href="https://www.youtube.com/watch?v=G8eX1kAmlXE" style="scroll-snap-align:start;position:relative;display:block;aspect-ratio:16/10;border-radius:24px;overflow:hidden;background:#D4F1EF;" style-hover="opacity:0.9;"><img src="https://img.youtube.com/vi/G8eX1kAmlXE/hqdefault.jpg" alt="סרטון" style="width:100%;height:100%;object-fit:cover;display:block;"/><span style="position:absolute;bottom:14px;right:14px;width:48px;height:48px;border-radius:50%;background:#FFFFFF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:16px;">▶</span></a>
+          <a href="https://www.youtube.com/watch?v=FCogqqihVVE" style="scroll-snap-align:start;position:relative;display:block;aspect-ratio:16/10;border-radius:24px;overflow:hidden;background:#D4F1EF;" style-hover="opacity:0.9;"><img src="https://img.youtube.com/vi/FCogqqihVVE/hqdefault.jpg" alt="סרטון" style="width:100%;height:100%;object-fit:cover;display:block;"/><span style="position:absolute;bottom:14px;right:14px;width:48px;height:48px;border-radius:50%;background:#FFFFFF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:16px;">▶</span></a>
+          <a href="https://www.youtube.com/watch?v=gkHhjXnj_tA" style="scroll-snap-align:start;position:relative;display:block;aspect-ratio:16/10;border-radius:24px;overflow:hidden;background:#D4F1EF;" style-hover="opacity:0.9;"><img src="https://img.youtube.com/vi/gkHhjXnj_tA/hqdefault.jpg" alt="סרטון" style="width:100%;height:100%;object-fit:cover;display:block;"/><span style="position:absolute;bottom:14px;right:14px;width:48px;height:48px;border-radius:50%;background:#FFFFFF;color:#0E7C7F;display:flex;align-items:center;justify-content:center;font-size:16px;">▶</span></a>
+        </div>
+      </div>
+      </section>
+
+    <section id="ami" style="background:#FFFFFF;border:1px solid #DDEDEC;border-radius:clamp(26px,4vw,40px);padding:clamp(24px,4.5vw,64px);display:flex;flex-direction:column;gap:clamp(28px,4vw,48px);">
+      <div data-reveal="true" style="display:flex;flex-direction:column;gap:12px;max-width:640px;">
+        <span style="font-size:15px;font-weight:600;color:#0E7C7F;">ספרי ילדים</span>
+        <h2 style="margin:0;font-size:clamp(30px,3.4vw,46px);font-weight:600;line-height:1.1;letter-spacing:-0.02em;color:#0B2B2D;">ספרי הילדים של פרופ' אייל שיינר</h2>
+      </div>
+      <div data-reveal-stagger="true" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(32px,4vw,56px);">
+        <article style="display:flex;flex-direction:column;gap:22px;">
+          <div style="position:relative;height:clamp(280px,30vw,360px);border-radius:24px;background:#F2F8F8;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            <div aria-hidden="true" style="position:absolute;width:80%;aspect-ratio:1/1;border-radius:50%;background:radial-gradient(circle, rgba(255,160,190,0.30) 0%, rgba(255,255,255,0) 68%);pointer-events:none;"></div>
+            <div style="perspective:1400px;height:78%;">
+              <div style="position:relative;height:100%;aspect-ratio:1.2/1;transform-style:preserve-3d;transform:rotateY(-24deg) rotateX(4deg);transition:transform .8s cubic-bezier(.2,.7,.2,1);" style-hover="transform:rotateY(-6deg) rotateX(2deg);">
+                <div style="position:absolute;inset:0;border-radius:3px 8px 8px 3px;overflow:hidden;transform:translateZ(11px);box-shadow:0 34px 60px -22px rgba(11,43,45,0.45), 0 14px 24px -12px rgba(11,43,45,0.25);">
+                  <div role="img" aria-label="אן כמעט אחות גדולה" style="width:100%;height:100%;background-image:url('https://static.wixstatic.com/media/db159b_6a61e864daa04b52959aab3e0e1846f4~mv2.jpg/v1/fill/w_700,h_1048,al_c,q_85/file.jpg');background-size:160% auto;background-position:55% 40%;background-repeat:no-repeat;"></div>
+                  <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(255,255,255,0) 86%, rgba(0,0,0,0.16) 93%, rgba(255,255,255,0.18) 96%, rgba(0,0,0,0.1) 100%);"></div>
+                </div>
+                <div style="position:absolute;top:0;right:0;width:22px;height:100%;transform-origin:right center;transform:translateZ(11px) rotateY(90deg);background-image:url('https://static.wixstatic.com/media/db159b_6a61e864daa04b52959aab3e0e1846f4~mv2.jpg/v1/fill/w_700,h_1048,al_c,q_85/file.jpg');background-size:auto 250%;background-position:80% 45%;filter:brightness(0.62) saturate(1.1);"></div>
+                <div style="position:absolute;top:2%;left:0;width:22px;height:96%;transform-origin:left center;transform:translateZ(11px) rotateY(-90deg);background:repeating-linear-gradient(90deg,#F4EEE6 0 2px,#E4DBCF 2px 3px);"></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;padding:0 4px;">
+            <span style="align-self:flex-start;background:#FFF1E2;color:#9A3F0C;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600;">חדש</span>
+            <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:600;line-height:1.2;color:#0B2B2D;text-wrap:balance;">אן כמעט אחות גדולה!</h3>
+            <p style="margin:0;font-size:17px;line-height:1.6;color:#0B2B2D;text-wrap:pretty;">איך מספרים לילד שהוא כבר לא יהיה לבד? ״אן כמעט אחות גדולה!״ הוא הרבה יותר מסיפור. זה גשר רגשי בין עולמו של הילד לבין השינוי הגדול שבדרך.</p>
+            <p style="margin:0;font-size:15px;line-height:1.75;color:#557072;text-wrap:pretty;">דרך עיניה של אן, ילדים לומדים להבין מה הם מרגישים באמת: שמחה, התרגשות, אבל גם קנאה וחשש…והכל לגיטימי. הספר מעניק להורים כלי פשוט, חכם ומבוסס הבנה פסיכולוגית, לעזור לילד שלהם לעבור את המעבר הזה בביטחון, ברוגע, ולצאת ממנו מחוזק כאח או אחות גדולה.</p>
+            <blockquote style="margin:0;padding:14px 16px;border-radius:14px;background:#F2F8F8;display:flex;flex-direction:column;gap:6px;"><span style="font-size:15px;line-height:1.6;color:#0B2B2D;">"ספר ילדים מקסים, שמלווה ברגישות רבה את עולמה הרגשי של ילדה המתכוננת להפוך לאחות גדולה."</span><span style="font-size:13px;color:#557072;">ד”ר אורית אלפי, מנהלת השירות הפסיכולוגי חינוכי בבאר שבע</span></blockquote>
+            <a href="https://www.olisafecare.com/product-page/%D7%90%D7%9F-%D7%9B%D7%9E%D7%A2%D7%98-%D7%90%D7%97%D7%95%D7%AA-%D7%92%D7%93%D7%95%D7%9C%D7%94" style="align-self:flex-start;margin-top:6px;background:#0B2B2D;color:#FFFFFF;padding:15px 28px;border-radius:14px;font-weight:600;font-size:15px;white-space:nowrap;transition:background .25s, transform .25s;" style-hover="background:#0E7C7F;color:#FFFFFF;transform:translateY(-2px);">לרכישת הספר</a>
+          </div>
+        </article>
+        <article style="display:flex;flex-direction:column;gap:22px;">
+          <div style="position:relative;height:clamp(280px,30vw,360px);border-radius:24px;background:#F2F8F8;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            <div aria-hidden="true" style="position:absolute;width:80%;aspect-ratio:1/1;border-radius:50%;background:radial-gradient(circle, rgba(255,170,70,0.28) 0%, rgba(255,255,255,0) 68%);pointer-events:none;"></div>
+            <div style="perspective:1400px;height:78%;">
+              <div style="position:relative;height:100%;aspect-ratio:1/1;transform-style:preserve-3d;transform:rotateY(-24deg) rotateX(4deg);transition:transform .8s cubic-bezier(.2,.7,.2,1);" style-hover="transform:rotateY(-6deg) rotateX(2deg);">
+                <div style="position:absolute;inset:0;border-radius:3px 8px 8px 3px;overflow:hidden;transform:translateZ(11px);box-shadow:0 34px 60px -22px rgba(11,43,45,0.45), 0 14px 24px -12px rgba(11,43,45,0.25);">
+                  <img src="https://eyalsheiner.co.il/wp-content/uploads/2025/03/Mask-group.png" alt="הַמַּסָּע הַמֻּפְלָא שֶׁל אֶמִּי בַּבֶּטֶן שֶׁל אִמָּא" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"/>
+                  <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(255,255,255,0) 86%, rgba(0,0,0,0.16) 93%, rgba(255,255,255,0.18) 96%, rgba(0,0,0,0.1) 100%);"></div>
+                </div>
+                <div style="position:absolute;top:0;right:0;width:22px;height:100%;transform-origin:right center;transform:translateZ(11px) rotateY(90deg);background-image:url('https://eyalsheiner.co.il/wp-content/uploads/2025/03/Mask-group.png');background-size:cover;background-position:right center;filter:brightness(0.62) saturate(1.1);"></div>
+                <div style="position:absolute;top:2%;left:0;width:22px;height:96%;transform-origin:left center;transform:translateZ(11px) rotateY(-90deg);background:repeating-linear-gradient(90deg,#F4EEE6 0 2px,#E4DBCF 2px 3px);"></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;padding:0 4px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><span style="font-size:14px;color:#557072;"><span style="color:#E8A13A;letter-spacing:1px;">★★★★★</span> 5.0 · 8 ביקורות</span></div>
+            <h3 style="margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:600;line-height:1.2;color:#0B2B2D;text-wrap:balance;">הַמַּסָּע הַמֻּפְלָא שֶׁל אֶמִּי בַּבֶּטֶן שֶׁל אִמָּא</h3>
+            <p style="margin:0;font-size:17px;line-height:1.6;color:#0B2B2D;text-wrap:pretty;">לראשונה- סיפור ילדים מקסים על המסע המופלא ברחם עד הלידה! סיפור מרגש ומרתק על מסעה של אֶמִּי, עוברית קטנה שמתחילה את דרכה ברחם של אמא.</p>
+            <p style="margin:0;font-size:15px;line-height:1.75;color:#557072;text-wrap:pretty;">דרך עיניה של אֶמִּי, הילדים נחשפים לתהליך הגדילה המופלא שמתרחש לאורך 40 שבועות –איך היא אוכלת, שומעת, גדלה, ובסופו של דבר נולדת. הסיפור נכתב על מנת להסביר לאן, נכדתו הגדולה, מה בדיוק עובר על אחותה, אֶמִּי, ברחם של אמא.</p>
+            
+            <blockquote style="margin:0;padding:14px 16px;border-radius:14px;background:#F2F8F8;display:flex;flex-direction:column;gap:6px;"><span style="font-size:15px;line-height:1.6;color:#0B2B2D;">"ככה זה כשפרופ׳ כותב ספר… הדרך הכי נעימה ללמוד מה שעובר על עובר ברחם, מפי איש שיודע…"</span><span style="font-size:13px;color:#557072;">טל ר., ביקורת קונה</span></blockquote>
+            <a href="https://www.olisafecare.com/product-page/%D7%94%D7%9E%D7%A1%D7%A2-%D7%94%D7%9E%D7%A4%D7%9C%D7%90-%D7%A9%D7%9C-%D7%90%D7%9E%D7%99-%D7%91%D7%91%D7%98%D7%9F-%D7%A9%D7%9C-%D7%90%D7%9E%D7%90-%D7%A1%D7%99%D7%A4%D7%95%D7%A8-%D7%99%D7%9C%D7%93%D7%99%D7%9D" style="align-self:flex-start;margin-top:6px;background:#0B2B2D;color:#FFFFFF;padding:15px 28px;border-radius:14px;font-weight:600;font-size:15px;white-space:nowrap;transition:background .25s, transform .25s;" style-hover="background:#0E7C7F;color:#FFFFFF;transform:translateY(-2px);">לרכישת הספר</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" style="background:#0B2B2D;color:#FFFFFF;border-radius:clamp(26px,4vw,40px);padding:clamp(28px,4.5vw,56px) clamp(22px,4.5vw,64px);display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,80px);align-items:center;position:relative;overflow:hidden;">
+      <div style="flex:1.4 1 340px;display:flex;flex-direction:column;gap:26px;position:relative;">
+        <div data-reveal="true" style="display:flex;flex-direction:column;gap:14px;">
+          <span style="font-size:15px;font-weight:500;color:#5EEEEE;">צור קשר</span>
+          <h2 style="margin:0;font-size:clamp(28px,3vw,42px);font-weight:600;line-height:1.05;letter-spacing:-0.02em;">לזימון תורים</h2>
+          <p style="margin:0;font-size:18px;line-height:1.6;color:#CBE4E2;max-width:460px;">כאן בשבילך – לכל שאלה, דאגה או ליווי רפואי מקצועי.</p>
+        </div>
+        <a data-reveal="true" href="tel:035114428" style="display:flex;flex-direction:column;gap:6px;color:#FFFFFF;align-self:flex-start;transition:color .3s;" style-hover="color:#5EEEEE;">
+          <span style="font-size:15px;color:#A9D6D3;">טלפון לזימון תורים</span>
+          <span dir="ltr" style="font-size:clamp(34px,4vw,54px);font-weight:600;line-height:1;letter-spacing:-0.03em;text-align:right;">03-5114428</span>
+        </a>
+        <div data-reveal="true" style="display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,0.14);">
+          <a href="sms:0548045075" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.14);color:#FFFFFF;transition:padding .3s, color .3s;" style-hover="padding-inline-start:8px;color:#5EEEEE;"><span style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:15px;color:#A9D6D3;">מזכירה אופיר</span><span style="font-size:13px;color:#7FA9A6;">הודעת טקסט בלבד, נא לא להתקשר</span></span><span dir="ltr" style="font-size:clamp(16px,1.5vw,19px);font-weight:500;white-space:nowrap;">054-8045075</span></a>
+          <a href="mailto:sheiner@bgu.ac.il" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.14);color:#FFFFFF;transition:padding .3s, color .3s;" style-hover="padding-inline-start:8px;color:#5EEEEE;"><span style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:15px;color:#A9D6D3;">מייל</span></span><span dir="ltr" style="font-size:clamp(16px,1.5vw,19px);font-weight:500;white-space:nowrap;">sheiner@bgu.ac.il</span></a>
+          <a href="https://waze.com/ul?q=%D7%90%D7%A7%D7%9C%D7%99%D7%A4%D7%98%D7%95%D7%A1%2033%20%D7%A2%D7%95%D7%9E%D7%A8" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.14);color:#FFFFFF;transition:padding .3s, color .3s;" style-hover="padding-inline-start:8px;color:#5EEEEE;"><span style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:15px;color:#A9D6D3;">קליניקה פרטית · ניווט</span><span style="font-size:13px;color:#7FA9A6;">כניסה בשביל מימין לבית</span></span><span style="font-size:clamp(16px,1.5vw,19px);font-weight:500;white-space:nowrap;">אקליפטוס 33, עומר</span></a>
+        </div>
+      </div>
+      <div data-reveal="true" data-reveal-delay="120" style="flex:1 1 220px;max-width:min(300px,50vw);margin-inline:auto;aspect-ratio:1/1;position:relative;display:flex;align-items:center;justify-content:center;">
+        <div style="position:absolute;inset:0;border-radius:50%;border:1px solid rgba(94,238,238,0.18);"></div>
+        <div style="position:absolute;inset:14%;border-radius:50%;background:radial-gradient(circle, rgba(23,177,177,0.28) 0%, rgba(23,177,177,0) 70%);"></div>
+        <div aria-hidden="true" style="width:56%;aspect-ratio:1/1;perspective:900px;"><div data-logo3d="spin" style="position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform;"><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-15.30px);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-13.50px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-11.70px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-9.90px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-8.10px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-6.30px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-4.50px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-2.70px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(-0.90px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(0.90px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(2.70px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(4.50px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(6.30px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(8.10px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(9.90px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(11.70px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(13.50px);filter:brightness(0.72) saturate(1.15);backface-visibility:visible;pointer-events:none;"/><img src="./assets/logo-mark.png" alt="" draggable="false" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:translateZ(15.30px);backface-visibility:visible;pointer-events:none;"/></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="max-width:1320px;margin:0 auto;padding:36px clamp(12px,3vw,32px) 36px;display:flex;flex-direction:column;gap:22px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+      <a href="#home" style="display:flex;align-items:center;gap:12px;color:#0B2B2D;">
+        <img src="./assets/logo-mark.png" alt="" aria-hidden="true" style="width:36px;height:auto;display:block;"/>
+        <span style="font-size:17px;font-weight:700;">פרופ' אייל שיינר</span>
+      </a>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;"><a href="https://www.tiktok.com/@prof_eyal_sheiner" aria-label="TikTok" title="TikTok" style="width:40px;height:40px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,border-color .25s,transform .25s;" style-hover="background:#0E7C7F;color:#FFFFFF;border-color:#0E7C7F;transform:translateY(-2px);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"></path><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"></path></svg></a><a href="https://www.instagram.com/eyalsheiner/" aria-label="Instagram" title="Instagram" style="width:40px;height:40px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,border-color .25s,transform .25s;" style-hover="background:#0E7C7F;color:#FFFFFF;border-color:#0E7C7F;transform:translateY(-2px);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"></circle></svg></a><a href="https://www.facebook.com/p/%D7%A4%D7%A8%D7%95%D7%A4-%D7%90%D7%99%D7%99%D7%9C-%D7%A9%D7%99%D7%99%D7%A0%D7%A8-100071931724190/" aria-label="Facebook" title="Facebook" style="width:40px;height:40px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,border-color .25s,transform .25s;" style-hover="background:#0E7C7F;color:#FFFFFF;border-color:#0E7C7F;transform:translateY(-2px);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3.5h-2.2A3.8 3.8 0 0 0 9 7.3V10H6.5v3.5H9V21h3.5v-7.5H15l.6-3.5h-3.1V7.6c0-.5.4-.9.9-.9H15z"></path></svg></a><a href="https://www.youtube.com/user/dagimyafim" aria-label="YouTube" title="YouTube" style="width:40px;height:40px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,border-color .25s,transform .25s;" style-hover="background:#0E7C7F;color:#FFFFFF;border-color:#0E7C7F;transform:translateY(-2px);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10.5 9.5l4 2.5-4 2.5z" fill="currentColor"></path></svg></a><a href="https://open.spotify.com/show/0OQnglgNAHROK4QMU7sZxB" aria-label="Spotify" title="Spotify" style="width:40px;height:40px;border-radius:50%;border:1px solid #CBE4E2;color:#0E7C7F;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,border-color .25s,transform .25s;" style-hover="background:#0E7C7F;color:#FFFFFF;border-color:#0E7C7F;transform:translateY(-2px);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.5c3-1 6.5-.7 9 .8"></path><path d="M8 12.6c2.4-.7 5-.5 7.2.7"></path><path d="M8.6 15.5c1.8-.5 3.7-.3 5.3.5"></path></svg></a></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;font-size:14px;color:#557072;padding-top:18px;border-top:1px solid #D6E8E7;">
+      <span>© כל הזכויות שמורות לפרופסור אייל שיינר</span>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;">
+        <a href="https://hospitals.clalit.co.il/soroka/he/our-specialists/Pages/sheiner-e.aspx" style="color:#557072;" style-hover="color:#0E7C7F;">עמוד באתר כללית</a>
+        <a href="Legal.dc.html" style="color:#557072;" style-hover="color:#0E7C7F;">תנאי שימוש, פרטיות והצהרת נגישות</a>
+      </div>
+    </div>
+  </footer>
+
+  <div style="position:fixed;z-index:45;bottom:{{ fabBottom }};right:clamp(12px,2vw,24px);display:flex;flex-direction:column;align-items:flex-start;gap:10px;">
+    <sc-if value="{{ a11yOpen }}" hint-placeholder-val="{{ false }}">
+      <div role="dialog" aria-label="תפריט נגישות" style="width:min(320px,calc(100vw - 24px));max-height:calc(100dvh - 180px);overflow-y:auto;background:#FFFFFF;border:1px solid #DDEDEC;border-radius:24px;box-shadow:0 24px 60px rgba(11,43,45,0.18);padding:18px;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+          <span style="font-size:17px;font-weight:700;color:#0B2B2D;">נגישות</span>
+          <button onClick="{{ toggleA11y }}" aria-label="סגירת תפריט נגישות" style="width:36px;height:36px;border-radius:50%;border:none;background:#E1F3F2;color:#0B2B2D;font-size:20px;line-height:1;cursor:pointer;font-family:inherit;">×</button>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:#F2F8F8;border-radius:16px;padding:10px 12px;">
+          <span style="font-size:14px;font-weight:500;color:#0B2B2D;">גודל טקסט</span>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <button onClick="{{ a11yFontDown }}" aria-label="הקטנת טקסט" style="width:36px;height:36px;border-radius:50%;border:1px solid #CBE4E2;background:#FFFFFF;color:#0E7C7F;font-size:18px;font-weight:700;cursor:pointer;font-family:inherit;">−</button>
+            <span dir="ltr" style="min-width:44px;text-align:center;font-size:14px;font-weight:600;color:#0B2B2D;font-variant-numeric:tabular-nums;">{{ a11yFontText }}</span>
+            <button onClick="{{ a11yFontUp }}" aria-label="הגדלת טקסט" style="width:36px;height:36px;border-radius:50%;border:1px solid #CBE4E2;background:#FFFFFF;color:#0E7C7F;font-size:18px;font-weight:700;cursor:pointer;font-family:inherit;">+</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <button onClick="{{ a11y_contrast }}" aria-pressed="{{ a11yP_contrast }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:84px;padding:12px 8px;border-radius:16px;border:1.5px solid {{ a11yB_contrast }};background:{{ a11yBg_contrast }};color:{{ a11yC_contrast }};font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s;"><span aria-hidden="true" style="font-size:18px;line-height:1;font-weight:700;">◐</span><span>ניגודיות גבוהה</span></button>
+          <button onClick="{{ a11y_gray }}" aria-pressed="{{ a11yP_gray }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:84px;padding:12px 8px;border-radius:16px;border:1.5px solid {{ a11yB_gray }};background:{{ a11yBg_gray }};color:{{ a11yC_gray }};font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s;"><span aria-hidden="true" style="font-size:18px;line-height:1;font-weight:700;">▦</span><span>גווני אפור</span></button>
+          <button onClick="{{ a11y_links }}" aria-pressed="{{ a11yP_links }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:84px;padding:12px 8px;border-radius:16px;border:1.5px solid {{ a11yB_links }};background:{{ a11yBg_links }};color:{{ a11yC_links }};font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s;"><span aria-hidden="true" style="font-size:18px;line-height:1;font-weight:700;">U</span><span>הדגשת קישורים</span></button>
+          <button onClick="{{ a11y_motion }}" aria-pressed="{{ a11yP_motion }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:84px;padding:12px 8px;border-radius:16px;border:1.5px solid {{ a11yB_motion }};background:{{ a11yBg_motion }};color:{{ a11yC_motion }};font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s;"><span aria-hidden="true" style="font-size:18px;line-height:1;font-weight:700;">❚❚</span><span>עצירת אנימציות</span></button>
+          <button onClick="{{ a11y_font }}" aria-pressed="{{ a11yP_font }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:84px;padding:12px 8px;border-radius:16px;border:1.5px solid {{ a11yB_font }};background:{{ a11yBg_font }};color:{{ a11yC_font }};font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s;"><span aria-hidden="true" style="font-size:18px;line-height:1;font-weight:700;">Aa</span><span>גופן קריא</span></button>
+          <button onClick="{{ a11y_cursor }}" aria-pressed="{{ a11yP_cursor }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:84px;padding:12px 8px;border-radius:16px;border:1.5px solid {{ a11yB_cursor }};background:{{ a11yBg_cursor }};color:{{ a11yC_cursor }};font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s;"><span aria-hidden="true" style="font-size:18px;line-height:1;font-weight:700;">➤</span><span>סמן גדול</span></button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:4px;">
+          <button onClick="{{ a11yReset }}" style="background:none;border:none;padding:6px 0;color:#0E7C7F;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;">איפוס הגדרות</button>
+          <a href="Legal.dc.html#accessibility" style="font-size:14px;color:#557072;" style-hover="color:#0E7C7F;">הצהרת נגישות</a>
+        </div>
+      </div>
+    </sc-if>
+    <button onClick="{{ toggleA11y }}" aria-label="תפריט נגישות" aria-expanded="{{ a11yOpen }}" style="width:54px;height:54px;border-radius:50%;border:none;background:#0B2B2D;color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 28px rgba(11,43,45,0.28);transition:transform .25s, background .25s;" style-hover="transform:scale(1.06);background:#0E7C7F;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.6" fill="currentColor" stroke="none"></circle><path d="M5 8.5c2.3.7 4.6 1 7 1s4.7-.3 7-1"></path><path d="M12 9.5v4.5"></path><path d="M12 14l-3 6"></path><path d="M12 14l3 6"></path></svg>
+    </button>
+  </div>
+
+  <a href="https://wa.me/972548045075" aria-label="שליחת הודעה בוואטסאפ" style="position:fixed;z-index:45;bottom:{{ fabBottom }};left:clamp(12px,2vw,24px);display:flex;align-items:center;gap:10px;height:54px;padding:0 6px 0 6px;border-radius:999px;background:#25D366;color:#FFFFFF;box-shadow:0 10px 28px rgba(37,211,102,0.35);transition:transform .25s, padding .3s;" style-hover="transform:translateY(-2px);color:#FFFFFF;">
+    <span style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+    </span>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:15px;font-weight:600;padding-inline-end:14px;white-space:nowrap;">דברו איתנו</span></sc-if>
+  </a>
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(243,246,251,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid #DDEDEC;display:flex;gap:8px;">
+      <a href="tel:035114428" style="flex:1.4;background:#0E7C7F;color:#FFFFFF;border-radius:16px;padding:15px 10px;text-align:center;font-weight:600;font-size:16px;">התקשרו לזימון תור</a>
+      <a href="sms:0548045075" style="flex:1;background:#FFFFFF;color:#0E7C7F;border:1px solid #CBE4E2;border-radius:16px;padding:15px 10px;text-align:center;font-weight:600;font-size:16px;">SMS למזכירה</a>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showEmbeds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showLoader&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;עמוד טעינה&quot;},&quot;loaderOncePerVisit&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;עמוד טעינה&quot;},&quot;instagramFeedId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Instagram (Behold)&quot;}}">
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1280, menuOpen: false, menuMounted: false, loaderPct: 0, loaderOut: false, loaderMounted: true, a11yOpen: false, a11y: (() => { try { return Object.assign({ font: 0, contrast: false, gray: false, links: false, motion: false, readable: false, cursor: false }, JSON.parse(localStorage.getItem('es_a11y') || '{}')); } catch (e) { return { font: 0 }; } })() };
+  componentDidMount() {
+    this.runLoader();
+    this.a11yApply();
+    this.onResize = () => { if (window.innerWidth >= 1080 && this.state.menuMounted) this.setState({ menuOpen: false, menuMounted: false }); this.setState({ w: window.innerWidth }); };
+    window.addEventListener('resize', this.onResize);
+    this.reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        this.io.unobserve(el);
+        requestAnimationFrame(() => { el.style.opacity = ''; el.style.transform = ''; });
+        setTimeout(() => { el.style.transition = el.__origTransition || ''; }, 1300 + (el.__delay || 0));
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    this.onScroll = () => {
+      const y = window.scrollY;
+      const bar = document.querySelector('[data-header-bar]');
+      if (bar) { bar.style.boxShadow = y > 12 ? '0 10px 40px rgba(11,43,45,0.10)' : '0 8px 30px rgba(11,43,45,0.06)'; bar.style.background = y > 12 ? 'rgba(255,255,255,0.94)' : 'rgba(255,255,255,0.82)'; }
+      if (!this.reduce && y < 1400) {
+        const img = document.querySelector('[data-parallax]');
+        if (img) img.style.transform = 'translate3d(0,' + (y * 0.08).toFixed(1) + 'px,0) scale(' + (1.04 - Math.min(y, 600) * 0.00004).toFixed(4) + ')';
+      }
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.setupReveal();
+    this.onScroll();
+    this.loadFeed();
+    this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    this.onMove = (e) => { this.mouse.x = e.clientX; this.mouse.y = e.clientY; };
+    window.addEventListener('pointermove', this.onMove, { passive: true });
+    const cur = new WeakMap();
+    const tick = (t) => {
+      document.querySelectorAll('[data-logo3d]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -50 || r.top > window.innerHeight + 50) return;
+        const mode = el.getAttribute('data-logo3d');
+        const dx = Math.max(-1, Math.min(1, (this.mouse.x - (r.left + r.width / 2)) / (window.innerWidth / 2)));
+        const dy = Math.max(-1, Math.min(1, (this.mouse.y - (r.top + r.height / 2)) / (window.innerHeight / 2)));
+        let ty, tx;
+        if (this.reduce) { ty = -18; tx = 6; }
+        else if (mode === 'spin') { ty = Math.sin(t * 0.0005) * 38 + dx * 14; tx = Math.cos(t * 0.0004) * 8 - dy * 10; }
+        else { ty = dx * 28 + Math.sin(t * 0.0009) * 6; tx = -dy * 20 + Math.cos(t * 0.0011) * 4; }
+        const c = cur.get(el) || { x: tx, y: ty };
+        c.x += (tx - c.x) * 0.08; c.y += (ty - c.y) * 0.08;
+        cur.set(el, c);
+        el.style.transform = 'rotateX(' + c.x.toFixed(2) + 'deg) rotateY(' + c.y.toFixed(2) + 'deg)';
+      });
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  runLoader() {
+    let seen = false; try { seen = !!sessionStorage.getItem('es_loader_seen'); } catch (e) {}
+    if (this.props.showLoader === false || (this.props.loaderOncePerVisit && seen)) { this.setState({ loaderMounted: false }); return; }
+    document.documentElement.style.overflow = 'hidden';
+    const start = performance.now();
+    let loaded = document.readyState === 'complete';
+    const onLoad = () => { loaded = true; };
+    window.addEventListener('load', onLoad, { once: true });
+    let pct = 0;
+    const step = (t) => {
+      const elapsed = t - start;
+      const cap = loaded && elapsed > 1200 ? 100 : Math.min(90, elapsed / 14);
+      pct += (cap - pct) * (cap === 100 ? 0.12 : 0.06);
+      if (cap === 100 && pct > 99.5) pct = 100;
+      if (Math.round(pct) !== this.state.loaderPct) this.setState({ loaderPct: Math.round(pct) });
+      if (pct < 100 && elapsed < 6000) { this.loaderRaf = requestAnimationFrame(step); return; }
+      this.setState({ loaderPct: 100 });
+      setTimeout(() => {
+        this.setState({ loaderOut: true });
+        document.documentElement.style.overflow = '';
+        try { sessionStorage.setItem('es_loader_seen', '1'); } catch (e) {}
+        setTimeout(() => this.setState({ loaderMounted: false }), 1000);
+      }, 250);
+    };
+    this.loaderRaf = requestAnimationFrame(step);
+  }
+  a11yApply() {
+    const a = this.state.a11y;
+    let el = document.getElementById('es-a11y-style');
+    if (!el) { el = document.createElement('style'); el.id = 'es-a11y-style'; document.head.appendChild(el); }
+    let css = '';
+    const f = [];
+    if (a.contrast) f.push('contrast(1.35)');
+    if (a.gray) f.push('grayscale(1)');
+    const z = 1 + (a.font || 0) * 0.1;
+    const tgt = 'main, footer, [data-header-bar], [role="dialog"]';
+    if (f.length) css += tgt + '{filter:' + f.join(' ') + ';}';
+    if (z !== 1) css += 'main, footer{zoom:' + z + ';}';
+    if (a.readable) css += 'main, footer, header, [role="dialog"], main *, footer *, header *, [role="dialog"] *{font-family:Arial, Helvetica, sans-serif !important;}';
+    if (a.links) css += 'a{text-decoration:underline !important;text-underline-offset:3px;}a:focus,button:focus{outline:3px solid #E8A13A !important;outline-offset:2px;}';
+    if (a.motion) css += '*,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important;}';
+    if (a.cursor) css += '*{cursor:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2732%27 height=%2732%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M4 2l16 9-7 2-3 7z%27 fill=%27%230B2B2D%27 stroke=%27white%27 stroke-width=%271.5%27/%3E%3C/svg%3E") 4 2, auto !important;}';
+    el.textContent = css;
+    try { localStorage.setItem('es_a11y', JSON.stringify(a)); } catch (e) {}
+  }
+  setA11y(patch) { this.setState(s => ({ a11y: Object.assign({}, s.a11y, patch) }), () => {}); setTimeout(() => this.a11yApply(), 0); }
+  openMenuAnim() {
+    clearTimeout(this.menuT); clearTimeout(this.menuO);
+    this.setState({ menuMounted: true, menuOpen: false });
+    this.menuO = setTimeout(() => this.setState({ menuOpen: true, menuMounted: true }), 40);
+  }
+  closeMenuAnim(fast) {
+    clearTimeout(this.menuT); clearTimeout(this.menuO);
+    this.setState({ menuOpen: false });
+    this.menuT = setTimeout(() => this.setState({ menuMounted: false, menuOpen: false }), fast ? 350 : 720);
+  }
+  componentDidUpdate() { this.setupReveal(); this.loadFeed(); }
+  loadFeed() {
+    const id = (this.props.instagramFeedId || '').trim();
+    if (!id || window.__beholdLoaded) return;
+    window.__beholdLoaded = true;
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.src = 'https://w.behold.so/widget.js';
+    document.head.appendChild(s);
+  }
+  setupReveal() {
+    if (this.reduce || !this.io) return;
+    const prep = (el, delay) => {
+      if (el.__rv) return;
+      el.__rv = true;
+      el.__delay = delay;
+      el.__origTransition = el.style.transition;
+      el.style.opacity = '0';
+      el.style.transform = 'translate3d(0,28px,0)';
+      el.style.transition = 'opacity 1s cubic-bezier(.2,.7,.2,1) ' + delay + 'ms, transform 1.1s cubic-bezier(.2,.7,.2,1) ' + delay + 'ms';
+      this.io.observe(el);
+    };
+    document.querySelectorAll('[data-reveal]').forEach((el) => prep(el, parseInt(el.getAttribute('data-reveal-delay') || '0', 10)));
+    document.querySelectorAll('[data-reveal-stagger]').forEach((wrap) => Array.from(wrap.children).forEach((c, i) => prep(c, i * 80)));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('pointermove', this.onMove);
+    cancelAnimationFrame(this.raf);
+    cancelAnimationFrame(this.loaderRaf);
+    document.documentElement.style.overflow = '';
+    if (this.io) this.io.disconnect();
+  }
+  renderVals() {
+    const isMobile = this.state.w < 1080;
+    return {
+      isMobile,
+      isDesktop: !isMobile,
+      bottomPad: isMobile ? '84px' : '0px',
+      stickyPos: this.state.w < 820 ? 'static' : 'sticky',
+      aboutPhotoOrder: this.state.w < 820 ? 1 : -1,
+      spotifyH: this.state.w < 640 ? '352px' : '232px',
+      menuOpen: this.state.menuOpen,
+      menuMounted: this.state.menuMounted,
+      ...(() => {
+        const a = this.state.a11y || {};
+        const on = { contrast: a.contrast, gray: a.gray, links: a.links, motion: a.motion, font: a.readable, cursor: a.cursor };
+        const map = { contrast: 'contrast', gray: 'gray', links: 'links', motion: 'motion', font: 'readable', cursor: 'cursor' };
+        const o = {};
+        Object.keys(on).forEach(k => {
+          o['a11y_' + k] = () => this.setA11y({ [map[k]]: !a[map[k]] });
+          o['a11yP_' + k] = on[k] ? 'true' : 'false';
+          o['a11yBg_' + k] = on[k] ? '#0E7C7F' : '#FFFFFF';
+          o['a11yC_' + k] = on[k] ? '#FFFFFF' : '#0B2B2D';
+          o['a11yB_' + k] = on[k] ? '#0E7C7F' : '#DDEDEC';
+        });
+        const f = [];
+        if (a.contrast) f.push('contrast(1.35)');
+        if (a.gray) f.push('grayscale(1)');
+        o.a11yFilter = f.length ? f.join(' ') : 'none';
+        o.a11yZoom = String(1 + (a.font || 0) * 0.1);
+        o.a11yFontText = Math.round((1 + (a.font || 0) * 0.1) * 100) + '%';
+        o.a11yFontFamily = a.readable ? 'Arial, Helvetica, sans-serif' : "'Rubik', sans-serif";
+        return o;
+      })(),
+      a11yOpen: this.state.a11yOpen,
+      toggleA11y: () => this.setState(s => ({ a11yOpen: !s.a11yOpen })),
+      a11yFontUp: () => this.setA11y({ font: Math.min(4, ((this.state.a11y || {}).font || 0) + 1) }),
+      a11yFontDown: () => this.setA11y({ font: Math.max(-1, ((this.state.a11y || {}).font || 0) - 1) }),
+      a11yReset: () => this.setA11y({ font: 0, contrast: false, gray: false, links: false, motion: false, readable: false, cursor: false }),
+      fabBottom: this.state.w < 1080 ? 'calc(96px + env(safe-area-inset-bottom))' : '24px',
+      loaderMounted: this.state.loaderMounted,
+      loaderW: this.state.loaderPct + '%',
+      loaderPctText: this.state.loaderPct + '%',
+      loaderOpacity: this.state.loaderOut ? 0 : 1,
+      loaderTf: this.state.loaderOut ? 'scale(0.92)' : 'scale(1)',
+      loaderTopTf: this.state.loaderOut ? 'translateY(-100%)' : 'translateY(0)',
+      loaderBotTf: this.state.loaderOut ? 'translateY(100%)' : 'translateY(0)',
+      loaderPointer: this.state.loaderOut ? 'none' : 'auto',
+      ovOpacity: this.state.menuOpen ? 1 : 0,
+      ovPointer: this.state.menuOpen ? 'auto' : 'none',
+      menuClip: this.state.menuOpen ? 'circle(150% at 8% 32px)' : 'circle(0% at 8% 32px)',
+      menuTf: this.state.menuOpen ? 'translateY(0) scale(1)' : 'translateY(-8px) scale(0.98)',
+      itemOp: this.state.menuOpen ? 1 : 0,
+      itemTf: this.state.menuOpen ? 'translateY(0)' : 'translateY(14px)',
+      stagger: this.state.menuOpen ? 1 : 0,
+      toggleMenu: () => this.state.menuOpen ? this.closeMenuAnim() : this.openMenuAnim(),
+      closeMenu: () => this.closeMenuAnim(true),
+      overlayClick: (e) => { if (e.target === e.currentTarget) this.closeMenuAnim(); },
+      showEmbeds: this.props.showEmbeds ?? true,
+      hasFeed: !!(this.props.instagramFeedId || '').trim(),
+      noFeed: !(this.props.instagramFeedId || '').trim(),
+      feedWidget: (this.props.instagramFeedId || '').trim() ? React.createElement('behold-widget', { 'feed-id': this.props.instagramFeedId.trim() }) : null,
+    };
+  }
+}
+</script>
+</body>
+</html>
