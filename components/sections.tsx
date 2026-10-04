@@ -3,7 +3,7 @@ import { Logo3D } from "./logo-3d";
 import { FOOTER_SOCIAL } from "./icons";
 
 const STATS = [
-  ["+25", "שנות ניסיון"],
+  ["+30", "שנות ניסיון"],
   ["+150", "מאמרים מדעיים"],
   ["11", "ספרי רפואה"],
   ["+1500", "נשים שלוו"],
@@ -65,7 +65,7 @@ export function Hero() {
             <span style={{ fontSize: "clamp(20px,2vw,28px)", fontWeight: 300, lineHeight: 1.25, letterSpacing: "-0.01em", color: "#0E7C7F" }}>מומחה למיילדות, גינקולוגיה ופיריון</span>
           </h1>
           <p data-reveal="true" data-reveal-delay="180" style={{ margin: 0, fontSize: "clamp(18px,1.5vw,20px)", lineHeight: 1.65, color: "#36504F", maxWidth: 520, textWrap: "pretty" }}>
-            מעל 25 שנות ניסיון בליווי נשים בהריון, לידות מורכבות, ניתוחים קיסריים וטיפול בהריונות בסיכון גבוה. כאן בשבילך – לכל שאלה, דאגה או ליווי רפואי מקצועי.
+            מעל 30 שנות ניסיון בליווי נשים בהריון, לידות מורכבות, ניתוחים קיסריים וטיפול בהריונות בסיכון גבוה. כאן בשבילך – לכל שאלה, דאגה או ליווי רפואי מקצועי.
           </p>
           <div data-reveal="true" data-reveal-delay="260" style={{ display: "flex", gap: "14px 28px", flexWrap: "wrap", alignItems: "center" }}>
             <a href="#expertise" className="h-hero-btn" style={{ background: "#0B2B2D", color: "#FFFFFF", padding: "18px 30px", borderRadius: 14, fontWeight: 600, fontSize: 17, whiteSpace: "nowrap", transition: "background .25s, transform .25s" }}>
@@ -96,7 +96,7 @@ export function Hero() {
           </div>
         ))}
       </div>
-      <div className="mobile-only stack" aria-label="+25 שנות ניסיון, +150 מאמרים מדעיים, 11 ספרי רפואה, +1500 נשים שלוו" style={{ position: "relative", overflow: "hidden", borderTop: "1px solid #D6E8E7", borderBottom: "1px solid #D6E8E7", padding: "18px 0", WebkitMaskImage: "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)", maskImage: "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)" }}>
+      <div className="mobile-only stack" aria-label="+30 שנות ניסיון, +150 מאמרים מדעיים, 11 ספרי רפואה, +1500 נשים שלוו" style={{ position: "relative", overflow: "hidden", borderTop: "1px solid #D6E8E7", borderBottom: "1px solid #D6E8E7", padding: "18px 0", WebkitMaskImage: "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)", maskImage: "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)" }}>
         <div className="stats-track" aria-hidden="true">
           <StatPair />
           <StatPair />
@@ -118,7 +118,7 @@ export function About() {
         </p>
         <div data-reveal="true" style={{ display: "flex", flexDirection: "column", gap: 18, maxWidth: 640 }}>
           <p style={{ margin: 0, fontSize: 17, lineHeight: 1.8, color: "#36504F", textWrap: "pretty" }}>
-            בעל ניסיון של למעלה מ-25 שנים בטיפול בנשים הרות, לידות מורכבות, ניתוחים קיסריים והריונות בסיכון גבוה. לאורך השנים, העניק טיפול מסור לאלפי נשים, תוך ליווי אישי ומקצועי מהשלבים הראשונים של ההיריון ועד לרגע הלידה.
+            בעל ניסיון של למעלה מ-30 שנים בטיפול בנשים הרות, לידות מורכבות, ניתוחים קיסריים והריונות בסיכון גבוה. לאורך השנים, העניק טיפול מסור לאלפי נשים, תוך ליווי אישי ומקצועי מהשלבים הראשונים של ההיריון ועד לרגע הלידה.
           </p>
           <p style={{ margin: 0, fontSize: 17, lineHeight: 1.8, color: "#36504F", textWrap: "pretty" }}>
             בנוסף, הוא פעיל במחקר רפואי מתקדם, פרסם מאות מאמרים מדעיים בכתבי עת מובילים, חיבר 11 ספרי רפואה, ומרצה בכנסים רפואיים בינלאומיים.
@@ -152,7 +152,7 @@ export function Expertise() {
           תחומי ההתמחות
         </h2>
         <p style={{ margin: 0, fontSize: 18, lineHeight: 1.7, color: "#36504F", textWrap: "pretty" }}>
-          פרופ&apos; אייל שיינר מומחה במיילדות, גינקולוגיה והריונות בסיכון גבוה, ומספק טיפול רפואי מותאם אישית לנשים בכל שלבי ההיריון. עם ניסיון של למעלה מ-25 שנים, ידע קליני מעמיק ומחקר רפואי חדשני, הוא מלווה נשים בהריון, בלידה ובתהליכים רפואיים מורכבים.
+          פרופ&apos; אייל שיינר מומחה במיילדות, גינקולוגיה והריונות בסיכון גבוה, ומספק טיפול רפואי מותאם אישית לנשים בכל שלבי ההיריון. עם ניסיון של למעלה מ-30 שנים, ידע קליני מעמיק ומחקר רפואי חדשני, הוא מלווה נשים בהריון, בלידה ובתהליכים רפואיים מורכבים.
         </p>
       </div>
       <div data-reveal-stagger="true" style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
