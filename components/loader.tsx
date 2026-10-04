@@ -3,6 +3,64 @@
 import { useEffect, useState } from "react";
 import { Logo3D } from "./logo-3d";
 
+function withTimeout(work: Promise<void>, ms: number) {
+  return new Promise<void>((resolve) => {
+    const timer = window.setTimeout(resolve, ms);
+    work.then(() => {
+      window.clearTimeout(timer);
+      resolve();
+    });
+  });
+}
+
+function waitImage(img: HTMLImageElement) {
+  if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+  return new Promise<void>((resolve) => {
+    const done = () => resolve();
+    img.addEventListener("load", done, { once: true });
+    img.addEventListener("error", done, { once: true });
+  });
+}
+
+function waitFrame(frame: HTMLIFrameElement) {
+  const src = frame.dataset.src;
+  if (!src) return Promise.resolve();
+  if (frame.dataset.loaded === "1") return Promise.resolve();
+  return new Promise<void>((resolve) => {
+    const done = () => {
+      frame.dataset.loaded = "1";
+      resolve();
+    };
+    frame.addEventListener("load", done, { once: true });
+    frame.addEventListener("error", done, { once: true });
+    if (frame.dataset.armed === "1") return;
+    frame.dataset.armed = "1";
+    frame.loading = "eager";
+    frame.src = src;
+  });
+}
+
+function preloadUrl(url: string) {
+  return new Promise<void>((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => resolve();
+    img.src = url;
+  });
+}
+
+function backgroundUrls() {
+  const found = new Set<string>();
+  document.querySelectorAll<HTMLElement>("[style]").forEach((el) => {
+    const value = el.style.backgroundImage;
+    if (!value || value === "none") return;
+    for (const match of value.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
+      if (match[1]) found.add(match[1]);
+    }
+  });
+  return [...found];
+}
+
 export function Loader() {
   const [mounted, setMounted] = useState(true);
   const [pct, setPct] = useState(0);
@@ -10,46 +68,68 @@ export function Loader() {
 
   useEffect(() => {
     document.documentElement.style.overflow = "hidden";
-    const start = performance.now();
-    let loaded = document.readyState === "complete";
-    const onLoad = () => {
-      loaded = true;
-    };
-    window.addEventListener("load", onLoad, { once: true });
-    let value = 0;
-    let frame = 0;
     let gone = false;
+    let frame = 0;
+    let value = 0;
+    let target = 8;
+    let ready = false;
+    const timeouts: number[] = [];
 
-    const step = (time: number) => {
+    const finish = () => {
+      if (gone || ready) return;
+      ready = true;
+      target = 100;
+    };
+
+    const tasks: Promise<void>[] = [];
+    document.querySelectorAll("img").forEach((img) => {
+      tasks.push(withTimeout(waitImage(img), 12000));
+    });
+    document.querySelectorAll<HTMLIFrameElement>("iframe[data-src]").forEach((iframe) => {
+      tasks.push(withTimeout(waitFrame(iframe), 18000));
+    });
+    backgroundUrls().forEach((url) => {
+      tasks.push(withTimeout(preloadUrl(url), 12000));
+    });
+    if (document.fonts) tasks.push(withTimeout(document.fonts.ready.then(() => undefined), 8000));
+
+    const total = Math.max(tasks.length, 1);
+    let done = 0;
+    tasks.forEach((task) => {
+      task.then(() => {
+        if (gone) return;
+        done += 1;
+        target = Math.max(target, Math.round((done / total) * 100));
+        if (done >= total) finish();
+      });
+    });
+    timeouts.push(window.setTimeout(finish, 20000));
+
+    const step = () => {
       if (gone) return;
-      const elapsed = time - start;
-      const cap = loaded && elapsed > 1200 ? 100 : Math.min(90, elapsed / 14);
-      value += (cap - value) * (cap === 100 ? 0.12 : 0.06);
-      if (cap === 100 && value > 99.5) value = 100;
+      value += (target - value) * (target === 100 ? 0.18 : 0.12);
+      if (target === 100 && value > 99.4) value = 100;
       const next = Math.round(value);
       setPct((prev) => (prev === next ? prev : next));
-      if (value < 100 && elapsed < 6000) {
-        frame = requestAnimationFrame(step);
+      if (value >= 100) {
+        window.setTimeout(() => {
+          if (gone) return;
+          setOut(true);
+          document.documentElement.style.overflow = "";
+          window.setTimeout(() => {
+            if (!gone) setMounted(false);
+          }, 1000);
+        }, 180);
         return;
       }
-      setPct(100);
-      window.setTimeout(() => {
-        setOut(true);
-        document.documentElement.style.overflow = "";
-        try {
-          sessionStorage.setItem("es_loader_seen", "1");
-        } catch {
-          /* ignore */
-        }
-        window.setTimeout(() => setMounted(false), 1000);
-      }, 250);
+      frame = requestAnimationFrame(step);
     };
-
     frame = requestAnimationFrame(step);
+
     return () => {
       gone = true;
       cancelAnimationFrame(frame);
-      window.removeEventListener("load", onLoad);
+      timeouts.forEach((id) => window.clearTimeout(id));
       document.documentElement.style.overflow = "";
     };
   }, []);

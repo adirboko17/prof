@@ -277,11 +277,11 @@ export function Schedule() {
       </div>
       <div data-reveal="true" style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
         <div style={{ flex: "1.6 1 380px", position: "relative", height: "clamp(300px,34vw,420px)", borderRadius: 24, overflow: "hidden", background: "#E1F3F2" }}>
-          <iframe src="https://my.matterport.com/show/?m=r2P9eTASfd5" title="סיור וירטואלי בקליניקה" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, display: "block" }} loading="lazy" allowFullScreen />
+          <iframe data-src="https://my.matterport.com/show/?m=r2P9eTASfd5" title="סיור וירטואלי בקליניקה" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, display: "block" }} allowFullScreen />
           <span style={{ position: "absolute", top: 14, right: 14, background: "#FFFFFF", color: "#0B2B2D", padding: "7px 13px", borderRadius: 999, fontSize: 13, fontWeight: 600, pointerEvents: "none", boxShadow: "0 4px 14px rgba(11,43,45,0.12)" }}>סיור וירטואלי</span>
         </div>
         <div style={{ flex: "1 1 280px", position: "relative", height: "clamp(300px,34vw,420px)", borderRadius: 24, overflow: "hidden", background: "#E1F3F2" }}>
-          <iframe src="https://www.google.com/maps?q=%D7%A4%D7%A8%D7%95%D7%A4%20%D7%90%D7%99%D7%99%D7%9C%20%D7%A9%D7%99%D7%99%D7%A0%D7%A8&output=embed&hl=he-IL&z=12" title="מפה" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, display: "block" }} loading="lazy" />
+          <iframe data-src="https://www.google.com/maps?q=%D7%A4%D7%A8%D7%95%D7%A4%20%D7%90%D7%99%D7%99%D7%9C%20%D7%A9%D7%99%D7%99%D7%A0%D7%A8&output=embed&hl=he-IL&z=12" title="מפה" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, display: "block" }} />
         </div>
       </div>
     </section>
@@ -302,7 +302,7 @@ export function Media() {
           <p style={{ margin: 0, fontSize: 17, lineHeight: 1.7, color: "#36504F", textWrap: "pretty" }}>
             פרופסור שיינר מגיש פודקאסט מרתק ומקצועי הכולל פרקים חדשים, טיפים, מענה לשאלות נפוצות, ומידע חיוני לנשים, הרות ויולדות.
           </p>
-          <iframe className="spotify" src="https://open.spotify.com/embed/show/0OQnglgNAHROK4QMU7sZxB?utm_source=generator&theme=0" title="Spotify" loading="lazy" allow="encrypted-media" />
+          <iframe className="spotify" data-src="https://open.spotify.com/embed/show/0OQnglgNAHROK4QMU7sZxB?utm_source=generator&theme=0" title="Spotify" allow="encrypted-media" />
         </div>
       </div>
 
@@ -404,7 +404,7 @@ export function Books() {
           <BookScene glow="radial-gradient(circle, rgba(255,170,70,0.28) 0%, rgba(255,255,255,0) 68%)">
             <div className="h-book" style={{ ...bookStyle, aspectRatio: "1/1" }}>
               <div style={{ position: "absolute", inset: 0, borderRadius: "3px 8px 8px 3px", overflow: "hidden", transform: "translateZ(11px)", boxShadow: "0 34px 60px -22px rgba(11,43,45,0.45), 0 14px 24px -12px rgba(11,43,45,0.25)" }}>
-                <img src="https://eyalsheiner.co.il/wp-content/uploads/2025/03/Mask-group.png" alt="הַמַּסָּע הַמֻּפְלָא שֶׁל אֶמִּי בַּבֶּטֶן שֶׁל אִמָּא" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
+                <img src="https://eyalsheiner.co.il/wp-content/uploads/2025/03/Mask-group.png" alt="הַמַּסָּע הַמֻּפְלָא שֶׁל אֶמִּי בַּבֶּטֶן שֶׁל אִמָּא" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(255,255,255,0) 86%, rgba(0,0,0,0.16) 93%, rgba(255,255,255,0.18) 96%, rgba(0,0,0,0.1) 100%)" }} />
               </div>
               <div style={{ position: "absolute", top: 0, right: 0, width: 22, height: "100%", transformOrigin: "right center", transform: "translateZ(11px) rotateY(90deg)", backgroundImage: "url('https://eyalsheiner.co.il/wp-content/uploads/2025/03/Mask-group.png')", backgroundSize: "cover", backgroundPosition: "right center", filter: "brightness(0.62) saturate(1.1)" }} />
