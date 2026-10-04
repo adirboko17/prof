@@ -1,12 +1,13 @@
 import type { ReactNode } from "react";
-import { Logo3D } from "./logo-3d";
 import { FOOTER_SOCIAL } from "./icons";
+import { getInstagramReels } from "@/lib/instagram";
+import { Logo3D } from "./logo-3d";
 
 const STATS = [
   ["+30", "שנות ניסיון"],
-  ["+150", "מאמרים מדעיים"],
+  ["+700", "מאמרים מדעיים"],
   ["11", "ספרי רפואה"],
-  ["+1500", "נשים שלוו"],
+  ["+10000", "נשים שלוו"],
 ] as const;
 
 const ROLES = [
@@ -96,7 +97,7 @@ export function Hero() {
           </div>
         ))}
       </div>
-      <div className="mobile-only stack" aria-label="+30 שנות ניסיון, +150 מאמרים מדעיים, 11 ספרי רפואה, +1500 נשים שלוו" style={{ position: "relative", overflow: "hidden", borderTop: "1px solid #D6E8E7", borderBottom: "1px solid #D6E8E7", padding: "18px 0", WebkitMaskImage: "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)", maskImage: "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)" }}>
+      <div className="mobile-only stack" aria-label="+30 שנות ניסיון, +700 מאמרים מדעיים, 11 ספרי רפואה, +10000 נשים שלוו" style={{ position: "relative", overflow: "hidden", borderTop: "1px solid #D6E8E7", borderBottom: "1px solid #D6E8E7", padding: "18px 0", WebkitMaskImage: "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)", maskImage: "linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)" }}>
         <div className="stats-track" aria-hidden="true">
           <StatPair />
           <StatPair />
@@ -298,7 +299,10 @@ export function Schedule() {
 
 const VIDEOS = ["2HqwyUlS-o0", "y31vrgRTpjw", "MaUf17fzGR4", "G8eX1kAmlXE", "FCogqqihVVE", "gkHhjXnj_tA"];
 
-export function Media() {
+export async function Media() {
+  const { username, reels } = await getInstagramReels();
+  const profileUrl = `https://www.instagram.com/${username}/`;
+
   return (
     <section id="media" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       <div data-reveal-stagger="true" style={{ display: "flex", flexWrap: "wrap", gap: 16, alignItems: "flex-start" }}>
@@ -317,22 +321,35 @@ export function Media() {
       <div style={{ display: "flex", flexDirection: "column", gap: 20, marginTop: 40 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            <span style={{ fontSize: 15, fontWeight: 600, color: "#0E7C7F" }}>@eyalsheiner</span>
+            <span dir="ltr" style={{ fontSize: 15, fontWeight: 600, color: "#0E7C7F" }}>@{username}</span>
             <h2 data-reveal="true" style={{ margin: 0, fontSize: "clamp(30px,3.6vw,48px)", fontWeight: 700, letterSpacing: "-0.02em" }}>
               הרילס האחרונים
             </h2>
           </div>
-          <a href="https://www.instagram.com/eyalsheiner/" className="h-pill" style={{ fontSize: 15, fontWeight: 600, background: "#FFFFFF", padding: "10px 18px", borderRadius: 999, whiteSpace: "nowrap" }}>
+          <a href={profileUrl} className="h-pill" style={{ fontSize: 15, fontWeight: 600, background: "#FFFFFF", padding: "10px 18px", borderRadius: 999, whiteSpace: "nowrap" }}>
             לעמוד האינסטגרם
           </a>
         </div>
         <div style={{ display: "grid", gridAutoFlow: "column", gridAutoColumns: "minmax(min(42vw,220px),1fr)", gap: 12, overflowX: "auto", scrollSnapType: "x mandatory", paddingBottom: 6 }}>
-          {["Reel 1", "Reel 2", "Reel 3", "Reel 4", "Reel 5"].map((label) => (
-            <a key={label} href="https://www.instagram.com/eyalsheiner/" className="h-reel" style={{ position: "relative", aspectRatio: "9/16", borderRadius: 20, overflow: "hidden", background: "linear-gradient(160deg,#E1F3F2,#CBE4E2)", display: "flex", alignItems: "flex-end", padding: 14, transition: "transform .3s" }}>
-              <span style={{ position: "absolute", top: 12, right: 12, width: 30, height: 30, borderRadius: "50%", background: "rgba(255,255,255,0.85)", color: "#0E7C7F", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, paddingLeft: 2 }}>▶</span>
-              <span style={{ fontSize: 13, fontWeight: 600, color: "#0E7C7F" }}>{label}</span>
-            </a>
-          ))}
+          {reels.length > 0
+            ? reels.map((reel) => (
+                <a key={reel.id} href={reel.permalink} className="h-reel" style={{ scrollSnapAlign: "start", position: "relative", aspectRatio: "9/16", borderRadius: 20, overflow: "hidden", background: "linear-gradient(160deg,#E1F3F2,#CBE4E2)", display: "flex", alignItems: "flex-end", padding: 14, transition: "transform .3s" }}>
+                  <img src={reel.image} alt={reel.caption || "ריל באינסטגרם"} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  <span aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(11,43,45,0.72), rgba(11,43,45,0) 46%)" }} />
+                  <span aria-hidden="true" style={{ position: "absolute", top: 12, right: 12, width: 30, height: 30, borderRadius: "50%", background: "rgba(255,255,255,0.85)", color: "#0E7C7F", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, paddingLeft: 2 }}>▶</span>
+                  {reel.caption ? (
+                    <span style={{ position: "relative", fontSize: 13, fontWeight: 600, color: "#FFFFFF", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                      {reel.caption}
+                    </span>
+                  ) : null}
+                </a>
+              ))
+            : ["Reel 1", "Reel 2", "Reel 3", "Reel 4", "Reel 5"].map((label) => (
+                <a key={label} href={profileUrl} className="h-reel" style={{ position: "relative", aspectRatio: "9/16", borderRadius: 20, overflow: "hidden", background: "linear-gradient(160deg,#E1F3F2,#CBE4E2)", display: "flex", alignItems: "flex-end", padding: 14, transition: "transform .3s" }}>
+                  <span style={{ position: "absolute", top: 12, right: 12, width: 30, height: 30, borderRadius: "50%", background: "rgba(255,255,255,0.85)", color: "#0E7C7F", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, paddingLeft: 2 }}>▶</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: "#0E7C7F" }}>{label}</span>
+                </a>
+              ))}
         </div>
       </div>
 

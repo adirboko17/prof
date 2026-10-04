@@ -86,7 +86,7 @@ export function WhatsAppIcon() {
 
 export const SOCIAL = [
   { href: "https://www.tiktok.com/@prof_eyal_sheiner", label: "TikTok", Icon: TikTokIcon },
-  { href: "https://www.instagram.com/eyalsheiner/", label: "Instagram", Icon: InstagramIcon },
+  { href: "https://www.instagram.com/prof.eyalsheiner/", label: "Instagram", Icon: InstagramIcon },
   { href: "https://www.youtube.com/user/dagimyafim", label: "YouTube", Icon: YouTubeIcon },
   { href: "https://open.spotify.com/show/0OQnglgNAHROK4QMU7sZxB", label: "Spotify", Icon: SpotifyIcon },
 ] as const;

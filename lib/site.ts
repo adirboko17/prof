@@ -103,7 +103,7 @@ export function siteGraph() {
         ],
         sameAs: [
           "https://hospitals.clalit.co.il/soroka/he/our-specialists/Pages/sheiner-e.aspx",
-          "https://www.instagram.com/eyalsheiner/",
+          "https://www.instagram.com/prof.eyalsheiner/",
           "https://www.tiktok.com/@prof_eyal_sheiner",
           "https://www.youtube.com/user/dagimyafim",
           "https://open.spotify.com/show/0OQnglgNAHROK4QMU7sZxB",
@@ -212,7 +212,7 @@ export function llmsFullTxt() {
 ## מדיה וספרים
 - פודקאסט בספוטיפיי: https://open.spotify.com/show/0OQnglgNAHROK4QMU7sZxB
 - יוטיוב: https://www.youtube.com/user/dagimyafim
-- אינסטגרם: https://www.instagram.com/eyalsheiner/
+- אינסטגרם: https://www.instagram.com/prof.eyalsheiner/
 - טיקטוק: https://www.tiktok.com/@prof_eyal_sheiner
 - ספר ילדים: אן כמעט אחות גדולה
 - ספר ילדים: המסע המופלא של אמי בבטן של אמא
